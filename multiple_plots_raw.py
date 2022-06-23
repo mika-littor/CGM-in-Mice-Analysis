@@ -103,6 +103,7 @@ def create_plot(plt, mouse_name):
     plt.show()
 
 
+
 def create_labels_for_x_axis(num_labels):
     """
     creates labels for the x axis. Every label represents a hourly time.
