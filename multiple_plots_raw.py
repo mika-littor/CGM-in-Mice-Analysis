@@ -64,7 +64,6 @@ def create_dict_date_values(args_lst):
                     values = dict_data[key_row]
                     values[0].append(time_row)
                     values[1].append(value_row)
-
     return dict_data
 
 
@@ -114,11 +113,10 @@ def create_labels_for_x_axis(num_labels):
     lst_labels = []
     current_time = 0
     for i in range(num_labels):
-        converted_time = "%s:00" %current_time
+        converted_time = "%s:00" % current_time
         lst_labels.append(converted_time)
         current_time += time_between_hours
     return lst_labels
-
 
 
 def validation_of_args(args_lst):
@@ -126,10 +124,10 @@ def validation_of_args(args_lst):
     checks if the args are valid - meaning there are only two, and the second is a valid path.
     :param args_lst: list of arguments (not including the first argument as the path to this python file.
     """
-    if (len(args_lst) > ARGS_NUMBER):
+    if len(args_lst) > ARGS_NUMBER:
         raise IndexError(ERR_WRONG_ARGS_NUM)
     path = args_lst[PATH_LOC_IN_ARGS]
-    if (not os.path.exists(path)):
+    if not os.path.exists(path):
         raise IOError(ERR_PATH_NOT_EXISTS + path)
 
 
@@ -143,4 +141,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-#TODO: ASK FROM THE USER FOR THE FIRST AND THE LAST OF THE HOURS MESURED IN ORDER TO PRINT ON THE LABELS
+# TODO: ASK FROM THE USER FOR THE FIRST AND THE LAST OF THE HOURS MESURED IN ORDER TO PRINT ON THE LABELS
