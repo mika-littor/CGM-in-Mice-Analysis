@@ -31,6 +31,8 @@ COL_MONTH = 1
 COL_TIME = 2
 COL_VALUE = 3
 
+NUM_HOURS = 24
+
 
 def create_dict_date_values(args_lst):
     """
@@ -96,9 +98,32 @@ def create_plot(plt, mouse_name):
     plt.xlabel("values", fontdict=font2)
     plt.ylabel("Time", fontdict=font2)
     plt.legend(loc=0)
+    locs, labels = plt.xticks()
+    new_xticks = create_labels_for_x_axis(len(locs))
+    plt.xticks(locs, new_xticks)
     plt.show()
 
-def validation_of_args (args_lst):
+
+def create_labels_for_x_axis(num_labels):
+    """
+    creates labels for the x axis. Every label represents a hourly time.
+    :param num_labels: number of labels to crete
+    :return: list of strings that represent the labels.
+    """
+    # TODO: CONVERT DATETIME RECEIVED BY THE USER INTO INT AND THEN CREATE LABELS FROM IT ACCORDING TO THE NUMBER OF
+    #  THE LABELS NEEDED.
+    time_between_hours = int(NUM_HOURS / (num_labels - 1))
+    lst_labels = []
+    current_time = 0
+    for i in range(num_labels):
+        converted_time = "%s:00" %current_time
+        lst_labels.append(converted_time)
+        current_time += time_between_hours
+    return lst_labels
+
+
+
+def validation_of_args(args_lst):
     """
     checks if the args are valid - meaning there are only two, and the second is a valid path.
     :param args_lst: list of arguments (not including the first argument as the path to this python file.
@@ -119,3 +144,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#TODO: ASK FROM THE USER FOR THE FIRST AND THE LAST OF THE HOURS MESURED IN ORDER TO PRINT ON THE LABELS
