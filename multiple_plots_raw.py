@@ -110,8 +110,6 @@ def create_labels_for_x_axis(num_labels):
     :param num_labels: number of labels to crete
     :return: list of strings that represent the labels.
     """
-    # TODO: CONVERT DATETIME RECEIVED BY THE USER INTO INT AND THEN CREATE LABELS FROM IT ACCORDING TO THE NUMBER OF
-    #  THE LABELS NEEDED.
     time_between_hours = int(NUM_HOURS / (num_labels - 1))
     lst_labels = []
     current_time = 0
