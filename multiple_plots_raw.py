@@ -111,7 +111,6 @@ def create_labels_for_x_axis(num_labels):
     return lst_labels
 
 
-
 def validation_of_args(args_lst):
     """
     checks if the args are valid - meaning there are only two, and the second is a valid path.
