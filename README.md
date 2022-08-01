@@ -26,7 +26,7 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 ## Setup
 1. Download the file that creates the plot you are interested in 
 2. Download the supplementary file 
-3. Add both files to your working directory
+3. Add the files to your working directory
 4. Run the file from 1 using Python workbench 
 
 ## Files
@@ -36,7 +36,3 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 #### [FILE: plot_single_mouse_avg](plot_single_mouse_avg.py)
 #### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
 #### [FILE: plot_all_mice_avg](plot_all_mice_avg.py)
-
-
-
-
