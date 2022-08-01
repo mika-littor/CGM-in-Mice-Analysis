@@ -235,6 +235,7 @@ def validation_of_args(args_lst):
         raise IOError(ERR_PATH_NOT_EXISTS + path)
 
 
+
 def main():
     # path_file = path_to_mouse(NAME_MOUSE)
     args_lst = sys.argv[1:]
