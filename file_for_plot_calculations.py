@@ -24,6 +24,9 @@ LAST_POINT_WIN = datetime(1900, 1, 1, 18, 0)
 COLOR_HZ_SUBPLOT = "#33FFBE"
 COLOR_HT_SUBPLOT = "#BE33FF"
 
+# Timing between the sliding windows
+SLIDING_WINDOW_DIFF = 0.1
+
 
 def create_dict_date_values(file_path):
     """
@@ -172,6 +175,6 @@ def arr_times_for_sliding_window(recording_space):
     creating an array of the times in the sliding window that is for 00:00 to 18:00. Every type is in datetime.
     :return:
     """
-    return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=recording_space)))
+    return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=0.1)))
 
 
