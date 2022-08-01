@@ -11,7 +11,7 @@ import sys
 import matplotlib.pyplot as plt
 # from datetime import datetime
 import os.path
-from file_for_plot_calculations import create_dict_date_values
+from file_for_plot_calculations import create_dict_date_values, create_labels_for_x_axis
 
 # Location of the argument accepts by the user in the list received.
 MOUSE_NAME_LOC_IN_ARGS = 0
@@ -57,22 +57,6 @@ def create_plot(plt, mouse_name):
     new_xticks = create_labels_for_x_axis(len(locs))
     plt.xticks(locs, new_xticks)
     plt.show()
-
-
-def create_labels_for_x_axis(num_labels):
-    """
-    creates labels for the x axis. Every label represents a hourly time.
-    :param num_labels: number of labels to crete
-    :return: list of strings that represent the labels.
-    """
-    time_between_hours = int(NUM_HOURS / (num_labels - 1))
-    lst_labels = []
-    current_time = 0
-    for i in range(num_labels):
-        converted_time = "%s:00" % current_time
-        lst_labels.append(converted_time)
-        current_time += time_between_hours
-    return lst_labels
 
 
 def validation_of_args(args_lst):

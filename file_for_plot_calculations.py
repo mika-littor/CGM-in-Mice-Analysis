@@ -6,6 +6,7 @@ COL_DAY = 0
 COL_MONTH = 1
 COL_TIME = 2
 COL_VALUE = 3
+NUM_HOURS = 24  # number of hours for the plot
 
 
 def create_dict_date_values(args_lst):
@@ -40,3 +41,19 @@ def create_dict_date_values(args_lst):
                         values[0].append(time_row)
                         values[1].append(value_row)
     return dict_data
+
+
+def create_labels_for_x_axis(num_labels):
+    """
+    creates labels for the x axis. Every label represents a hourly time.
+    :param num_labels: number of labels to crete
+    :return: list of strings that represent the labels.
+    """
+    time_between_hours = int(NUM_HOURS / (num_labels - 1))
+    lst_labels = []
+    current_time = 0
+    for i in range(num_labels):
+        converted_time = "%s:00" % current_time
+        lst_labels.append(converted_time)
+        current_time += time_between_hours
+    return lst_labels

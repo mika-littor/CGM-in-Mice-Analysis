@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 import numpy as np
 import statistics
 import os.path
-from file_for_plot_calculations import create_dict_date_values
+from file_for_plot_calculations import create_dict_date_values, create_labels_for_x_axis
 
 # Location of the argument accepts by the user in the list received.
 MOUSE_NAME_LOC_IN_ARGS = 0
@@ -25,12 +25,6 @@ ARGS_NUMBER = 4
 ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Mouse's name\n 2) Path to csv file with single mouse's data\n " \
                      "3) Sliding window size in minutes\n 4) Time in minutes between recordings\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
-
-# COL_DAY = 0
-# COL_MONTH = 1
-# COL_TIME = 2
-# COL_VALUE = 3
-# NUM_HOURS = 24  # number of hours for the plot
 
 # GRAPH'S GUI
 FONT_TITLE = {'family': 'Bookman Old Style', 'color': 'navy', 'size': 25}
@@ -66,22 +60,6 @@ def plot_data(slided_data_lst, args_lst):
     new_xticks = create_labels_for_x_axis(len(locs))
     plt.xticks(locs, new_xticks)
     plt.show()
-
-
-def create_labels_for_x_axis(num_labels):
-    """
-    creates labels for the x axis. Every label represents a hourly time.
-    :param num_labels: number of labels to crete
-    :return: list of strings that represent the labels.
-    """
-    time_between_hours = int(NUM_HOURS / (num_labels - 1))
-    lst_labels = []
-    current_time = 0
-    for i in range(num_labels):
-        converted_time = "%s:00" % current_time
-        lst_labels.append(converted_time)
-        current_time += time_between_hours
-    return lst_labels
 
 
 def get_y_coordinates(slided_data_lst):
