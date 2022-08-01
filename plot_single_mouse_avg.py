@@ -26,6 +26,7 @@ ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Mouse's name\n 2) Path to csv fi
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
 
 
+
 def plot_data(slided_data_lst, args_lst):
     """
     Method to plot multiple times in one figure.
@@ -87,7 +88,7 @@ def validation_of_args(args_lst):
 def main():
     args_lst = sys.argv[1:]
     validation_of_args(args_lst)
-    dict_data = create_dict_date_values(args_lst)
+    dict_data = create_dict_date_values(args_lst[PATH_LOC_IN_ARGS])
     # window_size_ele is a parameter used for calculation of the sliding window
     window_size_ele = int(int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]) / int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]) + 1)
     slided_data_lst = slide_data(dict_data, calc_avg, window_size_ele, int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))

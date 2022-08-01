@@ -4,7 +4,6 @@
 # Download this file in order to run them.
 ###########################################
 from datetime import datetime, timedelta
-PATH_LOC_IN_ARGS = 1
 import statistics
 
 # The representation of the columns in the csv file
@@ -26,7 +25,7 @@ COLOR_HZ_SUBPLOT = "#33FFBE"
 COLOR_HT_SUBPLOT = "#BE33FF"
 
 
-def create_dict_date_values(args_lst):
+def create_dict_date_values(file_path):
     """
     This function creates a dictionary.
     Every key represents a certain date that will have its own plot, and the values are lists.
@@ -37,7 +36,7 @@ def create_dict_date_values(args_lst):
     dict_data = {}
     # the first row in the file is the headers of the table, and therefore should not be added to the dictionary.
     first_row = True
-    with open(args_lst[PATH_LOC_IN_ARGS]) as f:
+    with open(file_path) as f:
         for row in f:
             if first_row:
                 # the first row is a row of headers, therefore it shouldn't be added to the dictionary. s
@@ -174,3 +173,5 @@ def arr_times_for_sliding_window(recording_space):
     :return:
     """
     return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=recording_space)))
+
+

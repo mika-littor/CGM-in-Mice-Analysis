@@ -9,66 +9,29 @@
 # 3) The time between every two recordings of the mouse.
 # IN ORDER TO USE PLEASE EDIT THE 'NAME MICE' ARGUMENT.
 ###########################################
+import sys
+import os.path
 import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
-from file_for_plot_calculations import slide_data
+from file_for_plot_calculations import *
 
 BASIC_FILE_PATH = r"C:\Users\mikal\Documents\LAB2\mice_sugar_prj"
 NAME_MICE = {"Naw2_M6": "HT", "Naw2_M10": "HT", "Naw2_M11": "HT", "Naw3_M2": "HT"}
-COL_DAY = 0
-COL_MONTH = 1
-COL_TIME = 2
-COL_VALUE = 3
 
-# GRAPH'S GUI
-FONT_TITLE = {'family': 'Bookman Old Style', 'color': 'navy', 'size': 25}
-FONT_LABEL = {'family': 'Bookman Old Style', 'color': 'black', 'size': 20}
 
-# SLIDING WINDOW
-WINDOW_SIZE = 11
-RECORDING_SPACE = 2  # 2 mins between each recording
-FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
-LAST_POINT_WIN = datetime(1900, 1, 1, 18, 0)
+# Location of the argument accepts by the user in the list received.
+PATH_LOC_IN_ARGS = 0
+WINDOW_SIZE_LOC_IN_ARGS = 1
+RECORDING_SPACE_LOC_IN_ARGS = 2
+ARGS_NUMBER = 3
+ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Path to csv directory with mice data\n " \
+                     "2) Sliding window size in minutes\n 3) Time in minutes between recordings\n"
+ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
 
 COLOR_HZ_SUBPLOT = "#33FFBE"
 COLOR_HT_SUBPLOT = "#BE33FF"
 
 
-def create_dict_date_values(file_path):
-    """
-    This function creates a dictionary.
-    Every key represents a certain date that will have its own plot, and the values are lists.
-    Every list has two list - the first of time (X) coordinates, and the second of the value (Y) coordinates.
-    :return: the dictionary with the representation of the data.
-    """
-    dict_data = {}
-    first_row = True
-    with open(file_path) as f:
-        for row in f:
-            if first_row:
-                # the first row is a row of headers, therefore it shouldn't be added to the dictionary. s
-                first_row = False
-            else:
-                row_data = list(row.split(","))
-                key_row = row_data[COL_DAY] + " " + row_data[COL_MONTH]
-                # converting the time into the format "H:M"
-                if row_data[COL_TIME] != "":
-                    time_row = datetime.strptime(str(row_data[COL_TIME]), '%H:%M')
-                    time_row.replace(month=1, day=1, year=2022)
-                    value_row = row_data[COL_VALUE]
-
-                    # adding the data of the row to the dictionary.
-                    if key_row not in dict_data.keys():
-                        dict_data[key_row] = [[time_row], [value_row]]
-                    else:
-                        values = dict_data[key_row]
-                        values[0].append(time_row)
-                        values[1].append(value_row)
-
-    return dict_data
-
-
-def multiple_plots(dict_data):
+def multiple_plots(dict_data, window_size, recording_space):
     """
     Method to plot multiple times in one figure.
     It receives a dictionary with the representation of the data in the csv file.
@@ -93,15 +56,15 @@ def multiple_plots(dict_data):
         else:
             ax.plot(coordinates[0], y_coordinates, label=(mouse + ":" + NAME_MICE[mouse]), color=COLOR_HT_SUBPLOT)
     plt.legend(prop={'size': 20})
-    create_plot(plt)
+    create_plot(plt, window_size, recording_space)
 
 
-def create_plot(plt):
+def create_plot(plt, window_size, recording_space):
     """
     showing the plot created
     :param plt: the plot
     """
-    sliding_window = str(int((WINDOW_SIZE - 1) * RECORDING_SPACE))
+    sliding_window = str(int((window_size - 1) * recording_space))
     plt.title("Avg Glucose Levels vs Time\n(sliding window size " + sliding_window + " minutes)\n", fontdict=FONT_TITLE)
     plt.xlabel("Time\n", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels\n", fontdict=FONT_LABEL)
@@ -110,31 +73,6 @@ def create_plot(plt):
     new_xticks = ["00:00", "02:00", "04:00", "06:00", "8:00", "10:00", "12:00", "14:00", "16:00", "18:00"]
     plt.xticks(locs, new_xticks)
     plt.show()
-
-
-# def slide_data(dict_data, func):
-#     """
-#     :param func: func_to_slide_data_on
-#     :param dict_data:
-#     :return: list of 2 lists. the first hold datetime types in the sliding wondow, and the second contains the
-#     average value in every point using sliding window.
-#     """
-#     arr_times = arr_times_for_sliding_window()
-#     i = 0
-#     # Initialize the list to return.
-#     moving_averages = [[], []]
-#     # Loop through the array to consider
-#     while i < len(arr_times) - WINDOW_SIZE + 1:
-#         # Store elements from i to i+window_size in list to get the current window
-#         window = arr_times[i: i + WINDOW_SIZE]
-#         # Calculate the average of current window
-#         window_average = func(window, dict_data)
-#         # Store the average of current window in moving average list
-#         moving_averages[0].append(arr_times[i])
-#         moving_averages[1].append(window_average)
-#         # Shift window to right by one position
-#         i += 1
-#     return moving_averages
 
 
 def calc_avg(window, dict_data):
@@ -147,7 +85,7 @@ def calc_avg(window, dict_data):
     # maybe calculate the average window for every day, and then calculate the average for the days.
     avgs_lst = []
     for day in dict_data.keys():
-        avg_current_day = calc_avg_per_day(window, dict_data, day)
+        avg_current_day = calc_per_day(window, dict_data, day)
         if avg_current_day != -10:
             avgs_lst.append(avg_current_day)
     # returning the avg calculation
@@ -155,30 +93,6 @@ def calc_avg(window, dict_data):
         return sum(avgs_lst) / len(avgs_lst)
     else:
         return None
-
-
-def calc_avg_per_day(window, dict_data, day):
-    """
-    :param window: times in datetime for a specific window
-    :param dict_data:
-    :param day: name of the day to calculate the average for
-    :return: the average value of the current day inside the window
-    """
-    # the data recorded that belongs to that specific day.
-    data_of_day = dict_data[day]
-    # list that holds the values of the recorded data in the current window.
-    lst_val_window = []
-    for t in window:
-        # checking if the time was recorded that day. If so, adds its value to
-        index_time = check_datetime_in_lst(t, data_of_day[0])
-        if index_time != -10:
-            # the time was in the list, therefore we insert it into
-            lst_val_window.append(int(data_of_day[1][index_time]))
-
-    if lst_val_window != []:
-        return sum(lst_val_window) / len(lst_val_window)
-    else:
-        return -10
 
 
 def check_datetime_in_lst(t, lst):
@@ -197,14 +111,6 @@ def check_datetime_in_lst(t, lst):
     return -10
 
 
-# def arr_times_for_sliding_window():
-#     """
-#     creating an array of the times in the sliding window that is for 00:00 to 18:00. Every type is in datetime.
-#     :return:
-#     """
-#     return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=RECORDING_SPACE)))
-
-
 def datetime_range(start, end, delta):
     current = start
     while current <= end:
@@ -212,22 +118,38 @@ def datetime_range(start, end, delta):
         current += delta
 
 
-def path_to_mouse(mouse):
+def path_to_mouse(mouse, basic_path):
     """
     :param mouse: name of the current mouse
     :return: path to the current mouse's file
     """
-    return BASIC_FILE_PATH + "\\" + mouse + "\\" + mouse.replace(" ", "_") + "_Hours.csv"
+    return basic_path + "\\" + mouse + "\\" + mouse.replace(" ", "_") + "_Hours.csv"
+
+
+def validation_of_args(args_lst):
+    """
+    checks if the args are valid - meaning there are only two, and the second is a valid path.
+    :param args_lst: list of arguments (not including the first argument as the path to this python file.
+    """
+    if len(args_lst) > ARGS_NUMBER:
+        raise IndexError(ERR_WRONG_ARGS_NUM)
+    path = args_lst[PATH_LOC_IN_ARGS]
+    if not os.path.exists(path):
+        raise IOError(ERR_PATH_NOT_EXISTS + path)
 
 
 def main():
     dict_mouse = {}
+    args_lst = sys.argv[1:]
+    validation_of_args(args_lst)
+    window_size_ele = int(int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]) / int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]) + 1)
     for mouse in sorted(NAME_MICE.keys()):
-        path_file = path_to_mouse(mouse)
+        path_file = path_to_mouse(mouse, args_lst[PATH_LOC_IN_ARGS])
         dict_data = create_dict_date_values(path_file)
-        slided_data_dict = slide_data(dict_data, calc_avg, WINDOW_SIZE, RECORDING_SPACE)
+        slided_data_dict = slide_data(dict_data, calc_avg, window_size_ele,
+                                      int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
         dict_mouse[mouse] = slided_data_dict
-    multiple_plots(dict_mouse)
+    multiple_plots(dict_mouse, int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]), int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
 
 
 if __name__ == "__main__":
