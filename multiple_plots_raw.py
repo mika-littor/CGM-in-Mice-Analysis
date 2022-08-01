@@ -1,24 +1,18 @@
 ###########################################
 # written by: Mika Littor, Danny Ben-Zvi's Lab.
-# This program creates a figure with multiple plots using moudule matplotlib in python 3. Each figure represents the
-# raw data taken from a single mouse. Every plot on the figure has its own color and it demonstrates a sigle day in
-# which data was mesured.
+# This program creates a figure with multiple plots using module matplotlib in python 3. Each figure represents the
+# raw data taken from a single mouse. Every plot on the figure has its own color, and it demonstrates a single day in
+# which data was measured.
 # The arguments needed in order for this program to run:
 # 1) Name of the mouse.
-# 2) Path to the CSV file that holds the data mesured from a single mouse.
+# 2) Path to the CSV file that holds the data measured from a single mouse.
 ###########################################
-from csv import reader
 import sys
-
-import matplotlib.dates
-import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.ticker import FormatStrFormatter
 from datetime import datetime
-import numpy as np
 import os.path
 
-# Location of the each argument acceptes by the user in the list received.
+# Location of the argument accepts by the user in the list received.
 MOUSE_NAME_LOC_IN_ARGS = 0
 PATH_LOC_IN_ARGS = 1
 ARGS_NUMBER = 2
@@ -30,7 +24,6 @@ COL_DAY = 0
 COL_MONTH = 1
 COL_TIME = 2
 COL_VALUE = 3
-
 NUM_HOURS = 24
 
 
@@ -103,7 +96,6 @@ def create_plot(plt, mouse_name):
     plt.show()
 
 
-
 def create_labels_for_x_axis(num_labels):
     """
     creates labels for the x axis. Every label represents a hourly time.
@@ -141,5 +133,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# TODO: ASK FROM THE USER FOR THE FIRST AND THE LAST OF THE HOURS MESURED IN ORDER TO PRINT ON THE LABELS
