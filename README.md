@@ -24,7 +24,7 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 [FILE: plot_all_mice_avg](#plot_all_mice_avg)
 
 <a name="file_for_plot_calculations"/>
-#### FILE: file_for_plot_calculations
+FILE: file_for_plot_calculations
 
 
 
