@@ -3,7 +3,7 @@
 Doron Kleiman, Mika Littor, Mahmoud Nawas, Rachel Ben-Haroush Schyr, Danny Ben-Zvi 
 
 ## Introduction
-Welcome to the homepage of the CGM analysis code!
+Welcome to the homepage of the CGM (continuous glucose monitoring) analysis code!
 
 This folder contains 5 code files written in Python 3, 
 that produce plots out of data recorded from mice using CGM.
