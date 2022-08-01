@@ -89,9 +89,10 @@ def plot_data(slided_data_lst, args_lst):
     # adding the error bars
     plt.fill_between(slided_data_lst[0], get_25_percentage(slided_data_lst), get_75_percentage(slided_data_lst))
     window_size = int(args_lst[WINDOW_SIZE_LOC_IN_ARGS])
-    sliding_window = str(int((window_size - 1) * RECORDING_SPACE))
+    # recoding_space = int(args_lst[RECORDING_SPACE_LOC_IN_ARGS])
+    # sliding_window = str(int((window_size - 1) * recoding_space))
     plt.title("Median glucose levels in a single mouse: " + args_lst[
-        MOUSE_NAME_LOC_IN_ARGS] + "\n sliding window size " + sliding_window +
+        MOUSE_NAME_LOC_IN_ARGS] + "\n sliding window size " + args_lst[WINDOW_SIZE_LOC_IN_ARGS] +
               " minutes", fontdict=FONT_TITLE)
     plt.xlabel("Time\n", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels\n", fontdict=FONT_LABEL)
@@ -127,7 +128,7 @@ def slide_data(dict_data, sliding_window_size, recording_space):
     :param sliding_window_size: size of sliding window in minutes
     :param dict_data:
     :param recording_space - time between every two recordings of the mouse
-    :return: list of 2 lists. the first hold datetime types in the sliding wondow, and the second contains the
+    :return: list of 2 lists. the first hold datetime types in the sliding window, and the second contains the
     average value in every point using sliding window.
     """
     arr_times = arr_times_for_sliding_window(recording_space)
@@ -243,9 +244,9 @@ def main():
     args_lst = sys.argv[1:]
     validation_of_args(args_lst)
     dict_data = create_dict_date_values(args_lst)
-    slided_data_lst = slide_data(dict_data, int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]),
-                                 int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
-    plot_data(slided_data_lst, args_lst)
+    window_size_ele = int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]) / int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]) + 1
+    slided_data_lst = slide_data(dict_data, window_size_ele, int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
+    plot_data(slided_data_lst, args_lst, window_size_ele)
 
 
 if __name__ == "__main__":
