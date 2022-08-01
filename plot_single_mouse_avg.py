@@ -11,12 +11,9 @@
 ###########################################
 import sys
 import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
 import numpy as np
-import statistics
 import os.path
-from file_for_plot_calculations import create_dict_date_values, create_labels_for_x_axis, datetime_range, calc_per_day, \
-    check_datetime_in_lst, get_25_percentage, get_75_percentage, get_y_coordinates
+from file_for_plot_calculations import *
 
 # Location of the argument accepts by the user in the list received.
 MOUSE_NAME_LOC_IN_ARGS = 0
@@ -27,18 +24,6 @@ ARGS_NUMBER = 4
 ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Mouse's name\n 2) Path to csv file with single mouse's data\n " \
                      "3) Sliding window size in minutes\n 4) Time in minutes between recordings\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
-
-# GRAPH'S GUI
-FONT_TITLE = {'family': 'Bookman Old Style', 'color': 'navy', 'size': 25}
-FONT_LABEL = {'family': 'Bookman Old Style', 'color': 'black', 'size': 20}
-NUM_HOURS = 24  # number of hours for the plot
-
-# SLIDING WINDOW
-FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
-LAST_POINT_WIN = datetime(1900, 1, 1, 18, 0)
-
-COLOR_HZ_SUBPLOT = "#33FFBE"
-COLOR_HT_SUBPLOT = "#BE33FF"
 
 
 def plot_data(slided_data_lst, args_lst):

@@ -14,6 +14,17 @@ COL_TIME = 2
 COL_VALUE = 3
 NUM_HOURS = 24  # number of hours for the plot
 
+# GRAPH'S GUI
+FONT_TITLE = {'family': 'Bookman Old Style', 'color': 'navy', 'size': 25}
+FONT_LABEL = {'family': 'Bookman Old Style', 'color': 'black', 'size': 20}
+
+# SLIDING WINDOW
+FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
+LAST_POINT_WIN = datetime(1900, 1, 1, 18, 0)
+
+COLOR_HZ_SUBPLOT = "#33FFBE"
+COLOR_HT_SUBPLOT = "#BE33FF"
+
 
 def create_dict_date_values(args_lst):
     """
