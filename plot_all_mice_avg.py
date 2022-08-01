@@ -9,7 +9,7 @@
 # 3) The time between every two recordings of the mouse.
 # IN ORDER TO USE PLEASE EDIT THE 'NAME MICE' ARGUMENT.
 ###########################################
-from file_for_plot_calculations import *
+from supplementary_file import *
 
 BASIC_FILE_PATH = r"C:\Users\mikal\Documents\LAB2\mice_sugar_prj"
 NAME_MICE = {"Naw2_M6": "HT", "Naw2_M10": "HT", "Naw2_M11": "HT", "Naw3_M2": "HT"}

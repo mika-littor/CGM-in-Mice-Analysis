@@ -11,7 +11,7 @@ import sys
 import matplotlib.pyplot as plt
 # from datetime import datetime
 import os.path
-from file_for_plot_calculations import create_dict_date_values, create_labels_for_x_axis
+from supplementary_file import create_dict_date_values, create_labels_for_x_axis
 
 # Location of the argument accepts by the user in the list received.
 MOUSE_NAME_LOC_IN_ARGS = 0

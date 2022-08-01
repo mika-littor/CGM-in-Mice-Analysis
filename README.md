@@ -12,17 +12,20 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 
 ## Requirements 
 1. Installation of Python 3 with the following packages:
-   * datetime
-   * matplotlib.pyplot
-   * numpy
-   * os.path
-   * statistics
-   * sys
+    ```
+   datetime
+   matplotlib.pyplot
+   numpy
+   os.path
+   statistics
+   sys
+   ```
 2. CSV file with the columns... recorded as...
    adding an example...
+3. Always use the supplementary file 
 
 ## Files
-#### [FILE: file_for_plot_calculations](file_for_plot_calculations.py)
+#### [FILE: supplementary_file](supplementary_file.py)
     write here about the file
 #### [FILE: multiple_plots_raw](multiple_plots_raw.py)
 #### [FILE: plot_single_mouse_avg](plot_single_mouse_avg.py)
