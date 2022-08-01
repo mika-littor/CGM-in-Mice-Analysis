@@ -22,7 +22,12 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
    ```
 2. CSV file with the columns... recorded as...
    adding an example...
-3. Always use the supplementary file 
+
+## Setup
+1. Download the file that creates the plot you are interested in 
+2. Download the supplementary file 
+3. Add both files to your working directory
+4. Run the file from 1 using Python workbench 
 
 ## Files
 #### [FILE: supplementary_file](supplementary_file.py)
