@@ -29,6 +29,7 @@ COL_DAY = 0
 COL_MONTH = 1
 COL_TIME = 2
 COL_VALUE = 3
+NUM_HOURS = 24  # number of hours for the plot
 
 # GRAPH'S GUI
 FONT_TITLE = {'family': 'Bookman Old Style', 'color': 'navy', 'size': 25}
@@ -88,18 +89,30 @@ def plot_data(slided_data_lst, args_lst):
     plt.plot(slided_data_lst[0], y_coordinates_sorted, color=COLOR_HZ_SUBPLOT)
     # adding the error bars
     plt.fill_between(slided_data_lst[0], get_25_percentage(slided_data_lst), get_75_percentage(slided_data_lst))
-    window_size = int(args_lst[WINDOW_SIZE_LOC_IN_ARGS])
-    # recoding_space = int(args_lst[RECORDING_SPACE_LOC_IN_ARGS])
-    # sliding_window = str(int((window_size - 1) * recoding_space))
     plt.title("Median glucose levels in a single mouse: " + args_lst[
         MOUSE_NAME_LOC_IN_ARGS] + "\n sliding window size " + args_lst[WINDOW_SIZE_LOC_IN_ARGS] +
               " minutes", fontdict=FONT_TITLE)
     plt.xlabel("Time\n", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels\n", fontdict=FONT_LABEL)
     locs, labels = plt.xticks()
-    new_xticks = ["00:00", "02:00", "04:00", "06:00", "8:00", "10:00", "12:00", "14:00", "16:00", "18:00"]
+    new_xticks = create_labels_for_x_axis(len(locs))
     plt.xticks(locs, new_xticks)
     plt.show()
+
+def create_labels_for_x_axis(num_labels):
+    """
+    creates labels for the x axis. Every label represents a hourly time.
+    :param num_labels: number of labels to crete
+    :return: list of strings that represent the labels.
+    """
+    time_between_hours = int(NUM_HOURS / (num_labels - 1))
+    lst_labels = []
+    current_time = 0
+    for i in range(num_labels):
+        converted_time = "%s:00" % current_time
+        lst_labels.append(converted_time)
+        current_time += time_between_hours
+    return lst_labels
 
 
 def get_y_coordinates(slided_data_lst):
@@ -244,9 +257,9 @@ def main():
     args_lst = sys.argv[1:]
     validation_of_args(args_lst)
     dict_data = create_dict_date_values(args_lst)
-    window_size_ele = int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]) / int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]) + 1
+    window_size_ele = int(int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]) / int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]) + 1)
     slided_data_lst = slide_data(dict_data, window_size_ele, int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
-    plot_data(slided_data_lst, args_lst, window_size_ele)
+    plot_data(slided_data_lst, args_lst)
 
 
 if __name__ == "__main__":

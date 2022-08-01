@@ -24,7 +24,7 @@ COL_DAY = 0
 COL_MONTH = 1
 COL_TIME = 2
 COL_VALUE = 3
-NUM_HOURS = 24
+NUM_HOURS = 24  # number of hours for the plot
 
 
 def create_dict_date_values(args_lst):
