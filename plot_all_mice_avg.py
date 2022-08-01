@@ -64,12 +64,13 @@ def create_plot(plt, window_size, recording_space):
     showing the plot created
     :param plt: the plot
     """
-    plt.title("Avg Glucose Levels vs Time\n(sliding window size " + window_size + " minutes)\n", fontdict=FONT_TITLE)
+    plt.title("Avg Glucose Levels vs Time\n(sliding window size " + str(window_size) + " minutes)\n",
+              fontdict=FONT_TITLE)
     plt.xlabel("Time\n", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels\n", fontdict=FONT_LABEL)
     plt.legend(loc=0)
     locs, labels = plt.xticks()
-    new_xticks = ["00:00", "02:00", "04:00", "06:00", "8:00", "10:00", "12:00", "14:00", "16:00", "18:00"]
+    new_xticks = create_labels_for_x_axis(len(locs))
     plt.xticks(locs, new_xticks)
     plt.show()
 
