@@ -1,7 +1,8 @@
-CGM project
-Danny Ben-Zvi Lab
+# Mice CGM Analysis: Danny Ben-Zvi's Lab
 
-The files in the 
+Welcome to the homepage of the CGM analysis code!
+
+## Introduction
 
 
 
