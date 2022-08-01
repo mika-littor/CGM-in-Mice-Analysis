@@ -99,6 +99,7 @@ def plot_data(slided_data_lst, args_lst):
     plt.xticks(locs, new_xticks)
     plt.show()
 
+
 def create_labels_for_x_axis(num_labels):
     """
     creates labels for the x axis. Every label represents a hourly time.
@@ -257,6 +258,7 @@ def main():
     args_lst = sys.argv[1:]
     validation_of_args(args_lst)
     dict_data = create_dict_date_values(args_lst)
+    # window_size_ele is a parameter used for calculation of the sliding window
     window_size_ele = int(int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]) / int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]) + 1)
     slided_data_lst = slide_data(dict_data, window_size_ele, int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
     plot_data(slided_data_lst, args_lst)
