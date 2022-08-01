@@ -15,7 +15,8 @@ from datetime import datetime, timedelta
 import numpy as np
 import statistics
 import os.path
-from file_for_plot_calculations import create_dict_date_values, create_labels_for_x_axis
+from file_for_plot_calculations import create_dict_date_values, create_labels_for_x_axis, datetime_range, calc_per_day, \
+    check_datetime_in_lst, get_25_percentage, get_75_percentage, get_y_coordinates
 
 # Location of the argument accepts by the user in the list received.
 MOUSE_NAME_LOC_IN_ARGS = 0
@@ -63,27 +64,6 @@ def plot_data(slided_data_lst, args_lst):
     plt.show()
 
 
-def get_y_coordinates(slided_data_lst):
-    y_coordinates = []
-    for lst in slided_data_lst[1]:
-        y_coordinates.append(lst[1])
-    return y_coordinates
-
-
-def get_75_percentage(slided_data_lst):
-    percentage_75_coordinates = []
-    for lst in slided_data_lst[1]:
-        percentage_75_coordinates.append(lst[2])
-    return percentage_75_coordinates
-
-
-def get_25_percentage(slided_data_lst):
-    percentage_25_coordinates = []
-    for lst in slided_data_lst[1]:
-        percentage_25_coordinates.append(lst[0])
-    return percentage_25_coordinates
-
-
 def slide_data(dict_data, sliding_window_size, recording_space):
     """
     :param sliding_window_size: size of sliding window in minutes
@@ -120,7 +100,7 @@ def calc_median(window, dict_data):
     # maybe calculate the average window for every day, and then calculate the average for the days.
     median_lst = []
     for day in dict_data.keys():
-        avg_current_day = calc_median_per_day(window, dict_data, day)
+        avg_current_day = calc_per_day(window, dict_data, day)
         if avg_current_day != -10:
             median_lst.append(avg_current_day)
     # returning the avg calculation
@@ -133,45 +113,6 @@ def calc_median(window, dict_data):
         return None
 
 
-def calc_median_per_day(window, dict_data, day):
-    """
-    :param window: times in datetime for a specific window
-    :param dict_data:
-    :param day: name of the day to calculate the median for
-    :return: the median value of the current day inside the window
-    """
-    # the data recorded that belongs to that specific day.
-    data_of_day = dict_data[day]
-    # list that holds the values of the recorded data in the current window.
-    lst_val_window = []
-    for t in window:
-        # checking if the time was recorded that day. If so, adds its value to
-        index_time = check_datetime_in_lst(t, data_of_day[0])
-        if index_time != -10:
-            # the time was in the list, therefore we insert it into
-            lst_val_window.append(int(data_of_day[1][index_time]))
-    if lst_val_window != []:
-        return statistics.median(lst_val_window)
-    else:
-        return -10
-
-
-def check_datetime_in_lst(t, lst):
-    """
-    method to check if the t time is in lst.
-    :param t: datetime object
-    :param lst: list of datetimes
-    :return: true if t is in lst (also of t + 1 minute) is in lst , else retruns false.
-    """
-    index_time = 0
-    for timing in lst:
-        if (t == timing) or (t == (timing + timedelta(minutes=1))):
-            return index_time
-        else:
-            index_time += 1
-    return -10
-
-
 def arr_times_for_sliding_window(recording_space):
     """
     :param recording_space - time between every two recordings of the mouse
@@ -179,13 +120,6 @@ def arr_times_for_sliding_window(recording_space):
     :return:
     """
     return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=recording_space)))
-
-
-def datetime_range(start, end, delta):
-    current = start
-    while current <= end:
-        yield current
-        current += delta
 
 
 def validation_of_args(args_lst):

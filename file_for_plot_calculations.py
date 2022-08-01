@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 PATH_LOC_IN_ARGS = 1
+import statistics
 
 # The representation of the columns in the csv file
 COL_DAY = 0
@@ -57,3 +58,70 @@ def create_labels_for_x_axis(num_labels):
         lst_labels.append(converted_time)
         current_time += time_between_hours
     return lst_labels
+
+
+def datetime_range(start, end, delta):
+    current = start
+    while current <= end:
+        yield current
+        current += delta
+
+
+def calc_per_day(window, dict_data, day):
+    """
+    :param window: times in datetime for a specific window
+    :param dict_data:
+    :param day: name of the day to calculate the median for
+    :return: the median value of the current day inside the window
+    """
+    # the data recorded that belongs to that specific day.
+    data_of_day = dict_data[day]
+    # list that holds the values of the recorded data in the current window.
+    lst_val_window = []
+    for t in window:
+        # checking if the time was recorded that day. If so, adds its value to
+        index_time = check_datetime_in_lst(t, data_of_day[0])
+        if index_time != -10:
+            # the time was in the list, therefore we insert it into
+            lst_val_window.append(int(data_of_day[1][index_time]))
+    if lst_val_window != []:
+        return statistics.median(lst_val_window)
+    else:
+        return -10
+
+
+def check_datetime_in_lst(t, lst):
+    """
+    method to check if the t time is in lst.
+    :param t: datetime object
+    :param lst: list of datetimes
+    :return: true if t is in lst (also of t + 1 minute) is in lst , else retruns false.
+    """
+    index_time = 0
+    for timing in lst:
+        if (t == timing) or (t == (timing + timedelta(minutes=1))):
+            return index_time
+        else:
+            index_time += 1
+    return -10
+
+
+def get_y_coordinates(slided_data_lst):
+    y_coordinates = []
+    for lst in slided_data_lst[1]:
+        y_coordinates.append(lst[1])
+    return y_coordinates
+
+
+def get_75_percentage(slided_data_lst):
+    percentage_75_coordinates = []
+    for lst in slided_data_lst[1]:
+        percentage_75_coordinates.append(lst[2])
+    return percentage_75_coordinates
+
+
+def get_25_percentage(slided_data_lst):
+    percentage_25_coordinates = []
+    for lst in slided_data_lst[1]:
+        percentage_25_coordinates.append(lst[0])
+    return percentage_25_coordinates
