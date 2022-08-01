@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 import numpy as np
 import statistics
 import os.path
+from file_for_plot_calculations import create_dict_date_values
 
 # Location of the argument accepts by the user in the list received.
 MOUSE_NAME_LOC_IN_ARGS = 0
@@ -25,15 +26,16 @@ ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Mouse's name\n 2) Path to csv fi
                      "3) Sliding window size in minutes\n 4) Time in minutes between recordings\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
 
-COL_DAY = 0
-COL_MONTH = 1
-COL_TIME = 2
-COL_VALUE = 3
-NUM_HOURS = 24  # number of hours for the plot
+# COL_DAY = 0
+# COL_MONTH = 1
+# COL_TIME = 2
+# COL_VALUE = 3
+# NUM_HOURS = 24  # number of hours for the plot
 
 # GRAPH'S GUI
 FONT_TITLE = {'family': 'Bookman Old Style', 'color': 'navy', 'size': 25}
 FONT_LABEL = {'family': 'Bookman Old Style', 'color': 'black', 'size': 20}
+NUM_HOURS = 24  # number of hours for the plot
 
 # SLIDING WINDOW
 FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
@@ -41,40 +43,6 @@ LAST_POINT_WIN = datetime(1900, 1, 1, 18, 0)
 
 COLOR_HZ_SUBPLOT = "#33FFBE"
 COLOR_HT_SUBPLOT = "#BE33FF"
-
-
-def create_dict_date_values(args_lst):
-    """
-    This function creates a dictionary.
-    Every key represents a certain date that will have its own plot, and the values are lists.
-    Every list has two list - the first of time (X) coordinates, and the second of the value (Y) coordinates.
-    :param args_lst: list of arguments received from the user.
-    :return: the dictionary with the representation of the data.
-    """
-    dict_data = {}
-    # the first row in the file is the headers of the table, and therefore should not be added to the dictionary.
-    first_row = True
-    with open(args_lst[PATH_LOC_IN_ARGS]) as f:
-        for row in f:
-            if first_row:
-                # the first row is a row of headers, therefore it shouldn't be added to the dictionary. s
-                first_row = False
-            else:
-                row_data = list(row.split(","))
-                key_row = row_data[COL_DAY] + " " + row_data[COL_MONTH]
-                # converting the time into the format "H:M"
-                if row_data[COL_TIME] != "":
-                    time_row = datetime.strptime(str(row_data[COL_TIME]), '%H:%M')
-                    time_row.replace(month=1, day=1, year=2022)
-                    value_row = row_data[COL_VALUE]
-                    # adding the data of the row to the dictionary.
-                    if key_row not in dict_data.keys():
-                        dict_data[key_row] = [[time_row], [value_row]]
-                    else:
-                        values = dict_data[key_row]
-                        values[0].append(time_row)
-                        values[1].append(value_row)
-    return dict_data
 
 
 def plot_data(slided_data_lst, args_lst):
