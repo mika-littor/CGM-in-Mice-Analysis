@@ -1,8 +1,11 @@
-# Mice CGM Analysis: Danny Ben-Zvi's Lab
+# Simple Continuous Glucose Monitoring in Freely Moving Mice 
 
+Doron Kleiman, Mika Littor, Mahmoud Nawas, Rachel Ben-Haroush Schyr, Danny Ben-Zvi 
+
+## Introduction
 Welcome to the homepage of the CGM analysis code!
 
-The folder contains 5 code files written in Python 3, 
+This folder contains 5 code files written in Python 3, 
 that produce plots out of data recorded from mice using CGM.
 
 You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
