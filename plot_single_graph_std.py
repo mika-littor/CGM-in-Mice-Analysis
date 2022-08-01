@@ -6,6 +6,7 @@
 # 1) Name of the mouse.
 # 2) Path to the CSV file that holds the data measured from a single mouse.
 # 3) Size of the sliding window in minutes.
+# 4) The time between every two recordings of the mouse
 ###########################################
 import sys
 import matplotlib.pyplot as plt
@@ -18,9 +19,10 @@ import os.path
 MOUSE_NAME_LOC_IN_ARGS = 0
 PATH_LOC_IN_ARGS = 1
 WINDOW_SIZE_LOC_IN_ARGS = 2
-ARGS_NUMBER = 3
-ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments.\n 1) Mouse's name\n 2) Path to csv file with single mouse's data\n " \
-                     "3) Sliding window size in minutes.\n"
+RECORDING_SPACE_LOC_IN_ARGS = 3
+ARGS_NUMBER = 4
+ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Mouse's name\n 2) Path to csv file with single mouse's data\n " \
+                     "3) Sliding window size in minutes\n 4) Time in minutes between recordings\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
 
 COL_DAY = 0
@@ -33,7 +35,6 @@ FONT_TITLE = {'family': 'Bookman Old Style', 'color': 'navy', 'size': 25}
 FONT_LABEL = {'family': 'Bookman Old Style', 'color': 'black', 'size': 20}
 
 # SLIDING WINDOW
-RECORDING_SPACE = 2  # 2 minutes between each recording
 FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
 LAST_POINT_WIN = datetime(1900, 1, 1, 18, 0)
 
@@ -121,14 +122,15 @@ def get_25_percentage(slided_data_lst):
     return percentage_25_coordinates
 
 
-def slide_data(dict_data, sliding_window_size):
+def slide_data(dict_data, sliding_window_size, recording_space):
     """
     :param sliding_window_size: size of sliding window in minutes
     :param dict_data:
+    :param recording_space - time between every two recordings of the mouse
     :return: list of 2 lists. the first hold datetime types in the sliding wondow, and the second contains the
     average value in every point using sliding window.
     """
-    arr_times = arr_times_for_sliding_window()
+    arr_times = arr_times_for_sliding_window(recording_space)
     i = 0
     # Initialize the list to return.
     moving_medians = [[], []]
@@ -208,12 +210,13 @@ def check_datetime_in_lst(t, lst):
     return -10
 
 
-def arr_times_for_sliding_window():
+def arr_times_for_sliding_window(recording_space):
     """
+    :param recording_space - time between every two recordings of the mouse
     creating an array of the times in the sliding window that is for 00:00 to 18:00. Every type is in datetime.
     :return:
     """
-    return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=RECORDING_SPACE)))
+    return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=recording_space)))
 
 
 def datetime_range(start, end, delta):
@@ -240,7 +243,8 @@ def main():
     args_lst = sys.argv[1:]
     validation_of_args(args_lst)
     dict_data = create_dict_date_values(args_lst)
-    slided_data_lst = slide_data(dict_data, int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]))
+    slided_data_lst = slide_data(dict_data, int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]),
+                                 int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
     plot_data(slided_data_lst, args_lst)
 
 
