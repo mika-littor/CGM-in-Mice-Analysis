@@ -1,7 +1,7 @@
 ###########################################
 # written by: Mika Littor, Danny Ben-Zvi's Lab.
 # This program creates a figure with multiple plots using module matplotlib in python 3.
-# The figure represents the median values for a single mouse using sliding window values
+# The figure represents the median values for a single mouse using sliding window values, with 75% and 25% bars.
 # The arguments needed in order for this program to run:
 # 1) Name of the mouse.
 # 2) Path to the CSV file that holds the data measured from a single mouse.

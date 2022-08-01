@@ -1,7 +1,13 @@
-#####
-# written by Mika Littor.
-#####
-
+###########################################
+# written by: Mika Littor, Danny Ben-Zvi's Lab.
+# This program creates a figure with multiple plots using module matplotlib in python 3.
+# The figure represents the averaged values for a single mouse using sliding window values
+# The arguments needed in order for this program to run:
+# 1) Name of the mouse.
+# 2) Path to the CSV file that holds the data measured from a single mouse.
+# 3) Size of the sliding window in minutes.
+# 4) The time between every two recordings of the mouse
+###########################################
 from csv import reader
 import sys
 
