@@ -49,7 +49,6 @@ def create_dict_date_values(args_lst):
                 # converting the time into the format "H:M"
                 time_row = datetime.strptime(str(row_data[COL_TIME]), '%H:%M')
                 value_row = row_data[COL_VALUE]
-
                 # adding the data of the row to the dictionary.
                 if key_row not in dict_data.keys():
                     dict_data[key_row] = [[time_row], [value_row]]
