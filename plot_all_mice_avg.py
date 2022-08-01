@@ -1,27 +1,19 @@
 ###########################################
 # written by: Mika Littor, Danny Ben-Zvi's Lab.
 # This program creates a figure with multiple plots using module matplotlib in python 3.
-# The figure represents the averaged values for a single mouse using sliding window values
+# The figure represents the averaged values for all the of the mice recordred.
 # The arguments needed in order for this program to run:
-# 1) Name of the mouse.
-# 2) Path to the CSV file that holds the data measured from a single mouse.
-# 3) Size of the sliding window in minutes.
-# 4) The time between every two recordings of the mouse
+# 1) Path to the CSV directory that holds the data measured from the mice.
+# THE NAME OF THE MOUSE SHOULD BE THE NAME OF THE FILE INSIDE THE DIRECTORY
+# 2) Size of the sliding window in minutes.
+# 3) The time between every two recordings of the mouse.
+# IN ORDER TO USE PLEASE EDIT THE 'NAME MICE' ARGUMENT.
 ###########################################
-from csv import reader
-import sys
-
-import matplotlib.dates
-import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.ticker import FormatStrFormatter
 from datetime import datetime, timedelta
-import numpy as np
-import random
 
 BASIC_FILE_PATH = r"C:\Users\mikal\Documents\LAB2\mice_sugar_prj"
-NAME_MICE = {"Naw1_M3": "HZ", "Naw1_M4": "HZ", "Naw2_M6": "HT", "Naw2_M8": "HZ", "Naw2_M10": "HT",
-             "Naw2_M11": "HT", "Naw3_M2": "HT", "Naw3_M3": "HZ"}
+NAME_MICE = {"Naw2_M6": "HT", "Naw2_M10": "HT", "Naw2_M11": "HT", "Naw3_M2": "HT"}
 COL_DAY = 0
 COL_MONTH = 1
 COL_TIME = 2
@@ -126,26 +118,20 @@ def slide_data(dict_data):
     average value in every point using sliding window.
     """
     arr_times = arr_times_for_sliding_window()
-
     i = 0
     # Initialize the list to return.
     moving_averages = [[], []]
-
     # Loop through the array to consider
     while i < len(arr_times) - WINDOW_SIZE + 1:
         # Store elements from i to i+window_size in list to get the current window
         window = arr_times[i: i + WINDOW_SIZE]
-
         # Calculate the average of current window
         window_average = calc_avg(window, dict_data)
-
         # Store the average of current window in moving average list
         moving_averages[0].append(arr_times[i])
         moving_averages[1].append(window_average)
-
         # Shift window to right by one position
         i += 1
-
     return moving_averages
 
 
@@ -239,13 +225,8 @@ def main():
         dict_data = create_dict_date_values(path_file)
         slided_data_dict = slide_data(dict_data)
         dict_mouse[mouse] = slided_data_dict
-    print(dict_mouse)
     multiple_plots(dict_mouse)
 
 
 if __name__ == "__main__":
     main()
-
-
-
-

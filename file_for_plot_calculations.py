@@ -1,3 +1,8 @@
+###########################################
+# written by: Mika Littor, Danny Ben-Zvi's Lab.
+# This program contains functions that are used by all of the programs in the directory.
+# Download this file in order to run them.
+###########################################
 from datetime import datetime, timedelta
 PATH_LOC_IN_ARGS = 1
 import statistics
