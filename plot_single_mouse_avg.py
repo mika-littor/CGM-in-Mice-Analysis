@@ -1,7 +1,7 @@
 ###########################################
 # written by: Mika Littor, Danny Ben-Zvi's Lab.
 # This program creates a figure with multiple plots using module matplotlib in python 3.
-# The figure represents the median values for a single mouse using sliding window values, with 75% and 25% bars.
+# The figure represents the mean values for a single mouse using sliding window values, with 75% and 25% bars.
 # The values are calculates using the data measured in all the days.
 # The arguments needed in order for this program to run:
 # 1) Name of the mouse.
@@ -52,7 +52,7 @@ def plot_data(slided_data_lst, args_lst):
     plt.plot(slided_data_lst[0], y_coordinates_sorted, color=COLOR_HZ_SUBPLOT)
     # adding the error bars
     plt.fill_between(slided_data_lst[0], get_25_percentage(slided_data_lst), get_75_percentage(slided_data_lst))
-    plt.title("Median glucose levels in a single mouse: " + args_lst[
+    plt.title("Mean glucose levels in a single mouse: " + args_lst[
         MOUSE_NAME_LOC_IN_ARGS] + "\n sliding window size " + args_lst[WINDOW_SIZE_LOC_IN_ARGS] +
               " minutes", fontdict=FONT_TITLE)
     plt.xlabel("Time\n", fontdict=FONT_LABEL)
@@ -101,7 +101,7 @@ def slide_data(dict_data, sliding_window_size, recording_space):
         # Store elements from i to i+window_size in list to get the current window
         window = arr_times[i: i + sliding_window_size]
         #  returns a list that contains the percentage 25, median, and percentage 75 for every day
-        window_median_lst = calc_median(window, dict_data)
+        window_median_lst = calc_avg(window, dict_data)
         # Store the average of current window in moving average list
         moving_medians[0].append(arr_times[i])
         moving_medians[1].append(window_median_lst)
@@ -110,7 +110,7 @@ def slide_data(dict_data, sliding_window_size, recording_space):
     return moving_medians
 
 
-def calc_median(window, dict_data):
+def calc_avg(window, dict_data):
     """
     :param window: times in datetime for a specific window
     :param dict_data:
@@ -118,17 +118,17 @@ def calc_median(window, dict_data):
     """
     # need to figure out how to calculate the average in every window.
     # maybe calculate the average window for every day, and then calculate the average for the days.
-    median_lst = []
+    mean_lst = []
     for day in dict_data.keys():
         avg_current_day = calc_median_per_day(window, dict_data, day)
         if avg_current_day != -10:
-            median_lst.append(avg_current_day)
+            mean_lst.append(avg_current_day)
     # returning the avg calculation
-    if median_lst != []:
-        median = statistics.median(median_lst)
-        percentile_75 = np.percentile(median_lst, 75)
-        percentile_25 = np.percentile(median_lst, 25)
-        return [percentile_25, median, percentile_75]
+    if mean_lst != []:
+        mean = statistics.mean(mean_lst)
+        percentile_75 = np.percentile(mean_lst, 75)
+        percentile_25 = np.percentile(mean_lst, 25)
+        return [percentile_25, mean, percentile_75]
     else:
         return None
 
