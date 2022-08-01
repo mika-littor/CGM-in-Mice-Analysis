@@ -14,7 +14,7 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 
 ## Files
 ### [FILE: file_for_plot_calculations](file_for_plot_calculations.py)
-### FILE: multiple_plots_raw
+### FILE: multiple_plots_raw()
 ### FILE: plot_single_mouse_avg
 ### FILE: plot_single_mouse_std
 ### FILE: plot_all_mice_avg
