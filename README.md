@@ -11,6 +11,16 @@ that produce plots out of data recorded from mice using CGM.
 You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 
 ## Requirements 
+1. Python 3  with the installation of the following packages:
+   * datetime
+   * matplotlib.pyplot
+   * numpy
+   * os.path
+   * statistics
+   * sys
+2. fskdjl
+
+
 
 ## Files
 #### [FILE: file_for_plot_calculations](file_for_plot_calculations.py)

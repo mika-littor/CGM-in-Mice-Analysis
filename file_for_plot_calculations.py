@@ -4,6 +4,10 @@
 # Download this file in order to run them.
 ###########################################
 from datetime import datetime, timedelta
+import sys
+import matplotlib.pyplot as plt
+import numpy as np
+import os.path
 import statistics
 
 # The representation of the columns in the csv file

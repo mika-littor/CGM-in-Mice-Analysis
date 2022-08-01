@@ -9,9 +9,6 @@
 # 3) The time between every two recordings of the mouse.
 # IN ORDER TO USE PLEASE EDIT THE 'NAME MICE' ARGUMENT.
 ###########################################
-import sys
-import os.path
-import matplotlib.pyplot as plt
 from file_for_plot_calculations import *
 
 BASIC_FILE_PATH = r"C:\Users\mikal\Documents\LAB2\mice_sugar_prj"

@@ -9,10 +9,6 @@
 # 3) Size of the sliding window in minutes.
 # 4) The time between every two recordings of the mouse
 ###########################################
-import sys
-import matplotlib.pyplot as plt
-import numpy as np
-import os.path
 from file_for_plot_calculations import *
 
 # Location of the argument accepts by the user in the list received.
