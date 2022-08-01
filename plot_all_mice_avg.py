@@ -11,6 +11,7 @@
 ###########################################
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
+from file_for_plot_calculations import slide_data
 
 BASIC_FILE_PATH = r"C:\Users\mikal\Documents\LAB2\mice_sugar_prj"
 NAME_MICE = {"Naw2_M6": "HT", "Naw2_M10": "HT", "Naw2_M11": "HT", "Naw3_M2": "HT"}
@@ -111,28 +112,29 @@ def create_plot(plt):
     plt.show()
 
 
-def slide_data(dict_data):
-    """
-    :param dict_data:
-    :return: list of 2 lists. the first hold datetime types in the sliding wondow, and the second contains the
-    average value in every point using sliding window.
-    """
-    arr_times = arr_times_for_sliding_window()
-    i = 0
-    # Initialize the list to return.
-    moving_averages = [[], []]
-    # Loop through the array to consider
-    while i < len(arr_times) - WINDOW_SIZE + 1:
-        # Store elements from i to i+window_size in list to get the current window
-        window = arr_times[i: i + WINDOW_SIZE]
-        # Calculate the average of current window
-        window_average = calc_avg(window, dict_data)
-        # Store the average of current window in moving average list
-        moving_averages[0].append(arr_times[i])
-        moving_averages[1].append(window_average)
-        # Shift window to right by one position
-        i += 1
-    return moving_averages
+# def slide_data(dict_data, func):
+#     """
+#     :param func: func_to_slide_data_on
+#     :param dict_data:
+#     :return: list of 2 lists. the first hold datetime types in the sliding wondow, and the second contains the
+#     average value in every point using sliding window.
+#     """
+#     arr_times = arr_times_for_sliding_window()
+#     i = 0
+#     # Initialize the list to return.
+#     moving_averages = [[], []]
+#     # Loop through the array to consider
+#     while i < len(arr_times) - WINDOW_SIZE + 1:
+#         # Store elements from i to i+window_size in list to get the current window
+#         window = arr_times[i: i + WINDOW_SIZE]
+#         # Calculate the average of current window
+#         window_average = func(window, dict_data)
+#         # Store the average of current window in moving average list
+#         moving_averages[0].append(arr_times[i])
+#         moving_averages[1].append(window_average)
+#         # Shift window to right by one position
+#         i += 1
+#     return moving_averages
 
 
 def calc_avg(window, dict_data):
@@ -195,12 +197,12 @@ def check_datetime_in_lst(t, lst):
     return -10
 
 
-def arr_times_for_sliding_window():
-    """
-    creating an array of the times in the sliding window that is for 00:00 to 18:00. Every type is in datetime.
-    :return:
-    """
-    return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=RECORDING_SPACE)))
+# def arr_times_for_sliding_window():
+#     """
+#     creating an array of the times in the sliding window that is for 00:00 to 18:00. Every type is in datetime.
+#     :return:
+#     """
+#     return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=RECORDING_SPACE)))
 
 
 def datetime_range(start, end, delta):
@@ -223,7 +225,7 @@ def main():
     for mouse in sorted(NAME_MICE.keys()):
         path_file = path_to_mouse(mouse)
         dict_data = create_dict_date_values(path_file)
-        slided_data_dict = slide_data(dict_data)
+        slided_data_dict = slide_data(dict_data, calc_avg, WINDOW_SIZE, RECORDING_SPACE)
         dict_mouse[mouse] = slided_data_dict
     multiple_plots(dict_mouse)
 

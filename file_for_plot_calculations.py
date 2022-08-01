@@ -141,3 +141,36 @@ def get_25_percentage(slided_data_lst):
     for lst in slided_data_lst[1]:
         percentage_25_coordinates.append(lst[0])
     return percentage_25_coordinates
+
+
+def slide_data(dict_data, func, window_size, recording_space):
+    """
+    :param func: func_to_slide_data_on
+    :param dict_data:
+    :return: list of 2 lists. the first hold datetime types in the sliding wondow, and the second contains the
+    average value in every point using sliding window.
+    """
+    arr_times = arr_times_for_sliding_window(recording_space)
+    i = 0
+    # Initialize the list to return.
+    moving_averages = [[], []]
+    # Loop through the array to consider
+    while i < len(arr_times) - window_size + 1:
+        # Store elements from i to i+window_size in list to get the current window
+        window = arr_times[i: i + window_size]
+        # Calculate the average of current window
+        window_average = func(window, dict_data)
+        # Store the average of current window in moving average list
+        moving_averages[0].append(arr_times[i])
+        moving_averages[1].append(window_average)
+        # Shift window to right by one position
+        i += 1
+    return moving_averages
+
+
+def arr_times_for_sliding_window(recording_space):
+    """
+    creating an array of the times in the sliding window that is for 00:00 to 18:00. Every type is in datetime.
+    :return:
+    """
+    return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=recording_space)))

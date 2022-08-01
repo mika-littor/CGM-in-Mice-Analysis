@@ -49,32 +49,6 @@ def plot_data(slided_data_lst, args_lst):
     plt.show()
 
 
-def slide_data(dict_data, sliding_window_size, recording_space):
-    """
-    :param sliding_window_size: size of sliding window in minutes
-    :param dict_data:
-    :param recording_space - time between every two recordings of the mouse
-    :return: list of 2 lists. the first hold datetime types in the sliding window, and the second contains the
-    average value in every point using sliding window.
-    """
-    arr_times = arr_times_for_sliding_window(recording_space)
-    i = 0
-    # Initialize the list to return.
-    moving_medians = [[], []]
-    # Loop through the array to consider
-    while i < len(arr_times) - sliding_window_size + 1:
-        # Store elements from i to i+window_size in list to get the current window
-        window = arr_times[i: i + sliding_window_size]
-        #  returns a list that contains the percentage 25, median, and percentage 75 for every day
-        window_median_lst = calc_avg(window, dict_data)
-        # Store the average of current window in moving average list
-        moving_medians[0].append(arr_times[i])
-        moving_medians[1].append(window_median_lst)
-        # Shift window to right by one position
-        i += 1
-    return moving_medians
-
-
 def calc_avg(window, dict_data):
     """
     :param window: times in datetime for a specific window
@@ -98,15 +72,6 @@ def calc_avg(window, dict_data):
         return None
 
 
-def arr_times_for_sliding_window(recording_space):
-    """
-    :param recording_space - time between every two recordings of the mouse
-    creating an array of the times in the sliding window that is for 00:00 to 18:00. Every type is in datetime.
-    :return:
-    """
-    return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=recording_space)))
-
-
 def validation_of_args(args_lst):
     """
     checks if the args are valid - meaning there are only two, and the second is a valid path.
@@ -120,13 +85,12 @@ def validation_of_args(args_lst):
 
 
 def main():
-    # path_file = path_to_mouse(NAME_MOUSE)
     args_lst = sys.argv[1:]
     validation_of_args(args_lst)
     dict_data = create_dict_date_values(args_lst)
     # window_size_ele is a parameter used for calculation of the sliding window
     window_size_ele = int(int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]) / int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]) + 1)
-    slided_data_lst = slide_data(dict_data, window_size_ele, int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
+    slided_data_lst = slide_data(dict_data, calc_avg, window_size_ele, int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
     plot_data(slided_data_lst, args_lst)
 
 
