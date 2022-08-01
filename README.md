@@ -13,18 +13,17 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 ## Requirements 
 
 ## Files
-[FILE: file_for_plot_calculations](#file_for_plot_calculations)
+####[FILE: file_for_plot_calculations](#file_for_plot_calculations)
 
-[FILE: multiple_plots_raw](#multiple_plots_raw)
+####[FILE: multiple_plots_raw](#multiple_plots_raw)
 
-[FILE: plot_single_mouse_avg](#plot_single_mouse_avg)
+####[FILE: plot_single_mouse_avg](#plot_single_mouse_avg)
 
-[FILE: plot_single_mouse_std](#plot_single_mouse_std)
+####[FILE: plot_single_mouse_std](#plot_single_mouse_std)
 
-[FILE: plot_all_mice_avg](#plot_all_mice_avg)
+####[FILE: plot_all_mice_avg](#plot_all_mice_avg)
 
-...snip...
-<a name="file_for_plot_calculations"/>
+<a name="file_for_plot_calculations"></a>
 #### FILE: file_for_plot_calculations
 
 
