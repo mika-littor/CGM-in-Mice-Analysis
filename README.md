@@ -18,10 +18,12 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
    * os.path
    * statistics
    * sys
-2. fskdjl
+2. CSV file with the columns... recorded as...
+   adding an example...
 
 ## Files
 #### [FILE: file_for_plot_calculations](file_for_plot_calculations.py)
+    write here about the file
 #### [FILE: multiple_plots_raw](multiple_plots_raw.py)
 #### [FILE: plot_single_mouse_avg](plot_single_mouse_avg.py)
 #### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
