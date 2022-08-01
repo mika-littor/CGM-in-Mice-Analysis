@@ -8,6 +8,7 @@
 # 2) Path to the CSV file that holds the data measured from a single mouse.
 ###########################################
 import sys
+
 import matplotlib.pyplot as plt
 from datetime import datetime
 import os.path
