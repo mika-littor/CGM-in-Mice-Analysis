@@ -12,14 +12,14 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 
 ## Requirements 
 1. Installation of Python 3 with the following packages:
-    ```
-   datetime
-   matplotlib.pyplot
-   numpy
-   os.path
-   statistics
-   sys
-   ```
+```
+datetime
+matplotlib.pyplot
+numpy
+os.path
+statistics
+sys
+```
 2. CSV files that 
 
 | Day |  Month  | Time (HH:MM) | Value | 
