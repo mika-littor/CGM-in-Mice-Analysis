@@ -32,9 +32,11 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 6. Run the file from 2 using Python workbench 
 7. Enter the arguments needed by the file according to the documentation below
 
-NOTE: If you wish to run the [FILE: plot_all_mice_avg](plot_all_mice_avg.py) then 
-each one of the CSV files inside the working directory should be named after the mouse its holds
-the data for. 
+#### Special Setup for the [plot_all_mice_avg](plot_all_mice_avg.py) file
+1. Name each one of the CSV files inside the working directory 
+after the name of the mouse it represent
+2. Edit the global variable ```NAME_MICE``` inside the [plot_all_mice_avg](plot_all_mice_avg.py) 
+file according to the mice's names
 
 ## Files
 ### [FILE: supplementary_file](supplementary_file.py)
@@ -49,7 +51,8 @@ The x-axis represents the time from 00:00 to 24:00, and the y-axis the glucose l
 Arguments:
 ```
 1) Mouse's name 
-2) Path to the CSV file that holds the data measured from a single mouse
+2) Path to the CSV file that holds the data measured from a single mouse, 
+inside the working directory
 ```
 
 ### [FILE: plot_single_mouse_avg](plot_single_mouse_avg.py)
@@ -67,7 +70,8 @@ The graph also has "standard error bars", which show the 25 and 75 percentile ca
 Arguments:
 ```
 1) Mouse's name
-2) Path to the CSV file that holds the data measured from a single mouse
+2) Path to the CSV file that holds the data measured from a single mouse, 
+inside the working directory
 3) Size of the sliding window in minutes
 4) The time between every two recordings of the mouse (depends on the CGM sampling)
 ```
@@ -79,7 +83,8 @@ Creating a plot similar to the one created by [plot_single_mouse_avg](plot_singl
 Arguments:
 ```
 1) Mouse's name
-2) Path to the CSV file that holds the data measured from a single mouse
+2) Path to the CSV file that holds the data measured from a single mouse, 
+inside the working directory
 3) Size of the sliding window in minutes
 4) The time between every two recordings of the mouse (depends on the CGM sampling)
 ```
@@ -98,5 +103,7 @@ In other words, this plot is a _combination of the plots_ created by the file
 
 Arguments:
 ```
-
+1) Path to the working directory
+2) Size of the sliding window in minutes.
+3) The time between every two recordings of the mouse (depends on the CGM sampling)
 ```
