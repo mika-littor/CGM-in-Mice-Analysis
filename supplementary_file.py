@@ -135,14 +135,22 @@ def get_y_coordinates(slided_data_lst):
     return y_coordinates
 
 
-def get_75_percentage(slided_data_lst):
+def get_75_percentile(slided_data_lst):
+    """
+    :param slided_data_lst:
+    :return: list of values of the 75 percentile out of the data recorded
+    """
     percentage_75_coordinates = []
     for lst in slided_data_lst[1]:
         percentage_75_coordinates.append(lst[2])
     return percentage_75_coordinates
 
 
-def get_25_percentage(slided_data_lst):
+def get_25_percentile(slided_data_lst):
+    """
+    :param slided_data_lst:
+    :return: list of values of the 25 percentile out of the data recorded
+    """
     percentage_25_coordinates = []
     for lst in slided_data_lst[1]:
         percentage_25_coordinates.append(lst[0])

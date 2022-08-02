@@ -108,13 +108,6 @@ def check_datetime_in_lst(t, lst):
     return -10
 
 
-def datetime_range(start, end, delta):
-    current = start
-    while current <= end:
-        yield current
-        current += delta
-
-
 def path_to_mouse(mouse, basic_path):
     """
     :param mouse: name of the current mouse

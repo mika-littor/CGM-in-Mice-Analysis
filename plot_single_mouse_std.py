@@ -33,7 +33,7 @@ def plot_data(slided_data_lst, args_lst):
     y_coordinates_sorted = list(map(int, y_coordinates))
     plt.plot(slided_data_lst[0], y_coordinates_sorted, color=COLOR_HZ_SUBPLOT)
     # adding the error bars
-    plt.fill_between(slided_data_lst[0], get_25_percentage(slided_data_lst), get_75_percentage(slided_data_lst))
+    plt.fill_between(slided_data_lst[0], get_25_percentile(slided_data_lst), get_75_percentile(slided_data_lst))
     plt.title("Median glucose levels in a single mouse: " + args_lst[
         MOUSE_NAME_LOC_IN_ARGS] + "\n sliding window size " + args_lst[WINDOW_SIZE_LOC_IN_ARGS] +
               " minutes", fontdict=FONT_TITLE)
