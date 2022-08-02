@@ -47,8 +47,7 @@ For (x, y) point on the line: y is the mean glucose levels
 measured from x to (x + window_size). When "window_size" is a parameter given by
 the user (see below).
 
-The graph also has "standard error bars", which show the 25 and 75 percentile  
-calculated from the data.
+The graph also has "standard error bars", which show the 25 and 75 percentile calculated from the data.
 ### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
 Creating a plot
 ### [FILE: plot_all_mice_avg](plot_all_mice_avg.py)
