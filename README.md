@@ -43,8 +43,8 @@ during the time of recording. The x-axis represents the time from 00:00 to 24:00
 and the y-axis the glucose levels measured. 
 
 The mean line on the graph is calculated using "sliding window" technic. 
-For each point (x, y) on the line: y is the mean glucose levels 
-measured from x to x + window_size. When "window_size" is a parameter given by
+For (x, y) point on the line: y is the mean glucose levels 
+measured from x to (x + window_size). When "window_size" is a parameter given by
 the user (see below).
 
 The graph also has "standard error bars", which show the 25% and the 75% mean values 
