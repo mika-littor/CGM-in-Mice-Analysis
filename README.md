@@ -1,3 +1,4 @@
+<p class="text-justify">
 # Simple Continuous Glucose Monitoring in Freely Moving Mice 
 
 Doron Kleiman, Mika Littor, Mahmoud Nawas, Rachel Ben-Haroush Schyr, Danny Ben-Zvi 
@@ -52,3 +53,5 @@ The graph also has "standard error bars", which show the 25 and 75 percentile ca
 Creating a plot
 ### [FILE: plot_all_mice_avg](plot_all_mice_avg.py)
 Creating a plot
+
+</p>
