@@ -24,11 +24,17 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
    adding an example...
 
 ## Setup
-1. Download the file that creates the plot you are interested in 
-2. Download the supplementary file 
-3. Add the files to your working directory
-4. Run the file from 1 using Python workbench 
-5. Enter the arguments needed by the file according to the documentation below
+1. Create a working directory
+2. Add to the working directory the CSV files needed with the wanted data
+3. Download from GitHub the file that creates the plot you are interested in 
+4. Download from GitHub the supplementary file 
+5. Add the files from 3+4 to the working directory
+6. Run the file from 2 using Python workbench 
+7. Enter the arguments needed by the file according to the documentation below
+
+NOTE: If you wish to run the [FILE: plot_all_mice_avg](plot_all_mice_avg.py) then 
+each one of the CSV files inside the working directory should be named after the mouse its holds
+the data for. 
 
 ## Files
 ### [FILE: supplementary_file](supplementary_file.py)
@@ -41,8 +47,10 @@ Each day that was recorded appears as a single colored line on the plot.
 The x-axis represents the time from 00:00 to 24:00, and the y-axis the glucose levels measured.
 
 Arguments:
+```
 1. mouse's name 
 2. Path to the CSV file that holds the data measured from a single mouse
+```
 
 ### [FILE: plot_single_mouse_avg](plot_single_mouse_avg.py)
 Creating a plot that shows the **mean** glucose levels measured on a **single** mouse
