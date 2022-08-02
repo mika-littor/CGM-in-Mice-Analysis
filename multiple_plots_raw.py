@@ -74,7 +74,7 @@ def validation_of_args(args_lst):
 def main():
     args_lst = sys.argv[1:]
     validation_of_args(args_lst)
-    dict_data = create_dict_date_values(args_lst)
+    dict_data = create_dict_date_values(args_lst[PATH_LOC_IN_ARGS])
     multiple_plots(dict_data, args_lst)
 
 
