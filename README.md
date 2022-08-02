@@ -53,6 +53,7 @@ Creating a plot similar to the one created by [plot_single_mouse_avg](plot_singl
 (see above), except for that the main line on this one represents the 
 <div id="bigtext"> **median** </div>. 
 
+
 ### [FILE: plot_all_mice_avg](plot_all_mice_avg.py)
 Creating a plot that shows the **mean** glucose levels measured on **all** mice during
 the time of recording. The x-axis represents the time from 00:00 to 24:00, 
