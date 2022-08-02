@@ -14,10 +14,10 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 1. Installation of Python 3 with the following packages:
    ```
    datetime
-   matplotlib.pyplot
+   matplotlib
    numpy
-   os.path
-   scipy.interpolate
+   os
+   scipy
    statistics
    sys
    ```
