@@ -12,7 +12,7 @@
 from supplementary_file import *
 
 BASIC_FILE_PATH = r"C:\Users\mikal\Documents\LAB2\mice_sugar_prj"
-NAME_MICE = {"Naw2_M6": "HT", "Naw2_M10": "HT", "Naw2_M11": "HT", "Naw3_M2": "HT"}
+NAME_MICE = ["Naw2_M6", "Naw2_M10", "Naw2_M11", "Naw3_M2"]
 
 
 # Location of the argument accepts by the user in the list received.
@@ -38,20 +38,17 @@ def multiple_plots(dict_data, window_size, recording_space):
     plt.rcParams['date.converter'] = 'concise'
     plt.yticks(range(0, 600, 10))
 
-    # setting the color for the
+    # # setting the color for the
     # cm = plt.get_cmap('tab20b')  # in order to set the color for the graphs
     # num_colors = len(dict_data.keys())
-    # picking color for the plot
+    # # picking color for the plot
     # ax.set_prop_cycle('color', [cm(1. * i / num_colors) for i in range(num_colors)])
 
     for mouse, coordinates in dict_data.items():
         # sorting the y coordinates
-        y_coordinates = list(map(int, coordinates[1]))
+        y_coordinates = list(map(float, coordinates[1]))
         # plotting the current date
-        if NAME_MICE[mouse] == "HZ":
-            ax.plot(coordinates[0], y_coordinates, label=(mouse + ":" + NAME_MICE[mouse]), color=COLOR_HZ_SUBPLOT)
-        else:
-            ax.plot(coordinates[0], y_coordinates, label=(mouse + ":" + NAME_MICE[mouse]), color=COLOR_HT_SUBPLOT)
+        ax.plot(coordinates[0], y_coordinates, label=mouse)
     plt.legend(prop={'size': 20})
     create_plot(plt, window_size, recording_space)
 
@@ -121,7 +118,7 @@ def validation_of_args(args_lst):
     checks if the args are valid - meaning there are only two, and the second is a valid path.
     :param args_lst: list of arguments (not including the first argument as the path to this python file.
     """
-    if len(args_lst) > ARGS_NUMBER:
+    if len(args_lst) != ARGS_NUMBER:
         raise IndexError(ERR_WRONG_ARGS_NUM)
     path = args_lst[PATH_LOC_IN_ARGS]
     if not os.path.exists(path):
@@ -133,7 +130,7 @@ def main():
     args_lst = sys.argv[1:]
     validation_of_args(args_lst)
     window_size_ele = int(int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]) / int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]) + 1)
-    for mouse in sorted(NAME_MICE.keys()):
+    for mouse in sorted(NAME_MICE):
         path_file = path_to_mouse(mouse, args_lst[PATH_LOC_IN_ARGS])
         dict_data = create_dict_date_values(path_file)
         slided_data_dict = slide_data(dict_data, calc_avg, window_size_ele,

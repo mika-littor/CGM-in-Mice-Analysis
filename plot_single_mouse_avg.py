@@ -30,7 +30,7 @@ def plot_data(slided_data_lst, args_lst):
     plt.rcParams['date.converter'] = 'concise'
     plt.yticks(range(0, 600, 10))
     y_coordinates = get_y_coordinates(slided_data_lst)
-    y_coordinates_sorted = list(map(int, y_coordinates))
+    y_coordinates_sorted = list(map(float, y_coordinates))
     plt.plot(slided_data_lst[0], y_coordinates_sorted, color=COLOR_HZ_SUBPLOT)
     # adding the error bars
     plt.fill_between(slided_data_lst[0], get_25_percentile(slided_data_lst), get_75_percentile(slided_data_lst))
@@ -73,7 +73,7 @@ def validation_of_args(args_lst):
     checks if the args are valid - meaning there are only two, and the second is a valid path.
     :param args_lst: list of arguments (not including the first argument as the path to this python file.
     """
-    if len(args_lst) > ARGS_NUMBER:
+    if len(args_lst) != ARGS_NUMBER:
         raise IndexError(ERR_WRONG_ARGS_NUM)
     path = args_lst[PATH_LOC_IN_ARGS]
     if not os.path.exists(path):

@@ -35,7 +35,7 @@ def multiple_plots(dict_data, args_lst):
     plt.yticks(range(0, 600, 10))
     for date, coordinates in dict_data.items():
         # sorting the y coordinates
-        y_coordinates = list(map(int, coordinates[1]))
+        y_coordinates = list(map(float, coordinates[1]))
         # plotting the current date
         ax.plot(coordinates[0], y_coordinates, label=date)
     create_plot(plt, args_lst[MOUSE_NAME_LOC_IN_ARGS])
@@ -64,7 +64,7 @@ def validation_of_args(args_lst):
     checks if the args are valid - meaning there are only two, and the second is a valid path.
     :param args_lst: list of arguments (not including the first argument as the path to this python file.
     """
-    if len(args_lst) > ARGS_NUMBER:
+    if len(args_lst) != ARGS_NUMBER:
         raise IndexError(ERR_WRONG_ARGS_NUM)
     path = args_lst[PATH_LOC_IN_ARGS]
     if not os.path.exists(path):

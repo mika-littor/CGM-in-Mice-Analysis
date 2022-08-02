@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os.path
 import statistics
+import pandas as pd
 
 # The representation of the columns in the csv file
 COL_DAY = 0
@@ -21,15 +22,15 @@ NUM_HOURS = 24  # number of hours for the plot
 FONT_TITLE = {'family': 'Bookman Old Style', 'color': 'navy', 'size': 25}
 FONT_LABEL = {'family': 'Bookman Old Style', 'color': 'black', 'size': 20}
 
-# SLIDING WINDOW
-FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
-LAST_POINT_WIN = datetime(1900, 1, 1, 18, 0)
-
 COLOR_HZ_SUBPLOT = "#33FFBE"
 COLOR_HT_SUBPLOT = "#BE33FF"
 
 # Timing between the sliding windows
 SLIDING_WINDOW_DIFF = 0.1
+
+# SLIDING WINDOW
+FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
+LAST_POINT_WIN = datetime(1900, 1, 1, 18, 0)
 
 
 def create_dict_date_values(file_path):
@@ -105,7 +106,7 @@ def calc_per_day(window, dict_data, day):
         index_time = check_datetime_in_lst(t, data_of_day[0])
         if index_time != -10:
             # the time was in the list, therefore we insert it into
-            lst_val_window.append(int(data_of_day[1][index_time]))
+            lst_val_window.append(float(data_of_day[1][index_time]))
     if lst_val_window != []:
         return statistics.median(lst_val_window)
     else:
@@ -187,6 +188,6 @@ def arr_times_for_sliding_window(recording_space):
     creating an array of the times in the sliding window that is for 00:00 to 18:00. Every type is in datetime.
     :return:
     """
-    return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=recording_space)))
+    return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=2)))
 
 
