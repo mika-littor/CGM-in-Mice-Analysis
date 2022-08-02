@@ -23,7 +23,7 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 2. CSV file for every mouse with the data measured using the CGM.
 
    The following format is best for creating neat plots 
-(you can change the month column to contain month numbers if you wish).
+(you can change the month column to contain month numbers if you wish to).
 
    | Day |  Month  | Time (HH:MM) | Value | 
    |:---:|:-------:|:------------:|:-----:|
