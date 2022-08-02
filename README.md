@@ -38,5 +38,6 @@ This file creates a plot that represents the "raw" data recorded on a single mou
 Each day that was recorded appears as a single colored line on the plot.
 The x-axis holds the time from 00:00 to 24:00, and the y-axis holds the glucose levels.
 #### [FILE: plot_single_mouse_avg](plot_single_mouse_avg.py)
+
 #### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
 #### [FILE: plot_all_mice_avg](plot_all_mice_avg.py)
