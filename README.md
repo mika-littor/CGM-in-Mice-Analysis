@@ -12,21 +12,21 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 
 ## Requirements 
 1. Installation of Python 3 with the following packages:
-```
-datetime
-matplotlib.pyplot
-numpy
-os.path
-statistics
-sys
-```
-2. CSV files that 
+   ```
+   datetime
+   matplotlib.pyplot
+   numpy
+   os.path
+   statistics
+   sys
+   ```
+2. CSV files that
 
-| Day |  Month  | Time (HH:MM) | Value | 
-|:---:|:-------:|:------------:|:-----:|
-|  1  | January |    00:00     |  180  |
-|  2  | January |    00:02     |  182  |
-|  3  | January |    00:04     |  187  |
+   | Day |  Month  | Time (HH:MM) | Value | 
+   |:---:|:-------:|:------------:|:-----:|
+   |  1  | January |    00:00     |  180  |
+   |  2  | January |    00:02     |  182  |
+   |  3  | January |    00:04     |  187  |
 
 ## Setup
 1. Create a working directory
