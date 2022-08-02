@@ -50,9 +50,7 @@ the user (see below).
 The graph also has "standard error bars", which show the 25 and 75 percentile calculated from the data.
 ### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
 Creating a plot similar to the one created by [plot_single_mouse_avg](plot_single_mouse_avg.py)
-(see above), except for that the main line on this one represents the 
-<div id="bigtext"> **median** </div>. 
-
+(see above), except for that the main line on this file's plot represents the **median**.
 
 ### [FILE: plot_all_mice_avg](plot_all_mice_avg.py)
 Creating a plot that shows the **mean** glucose levels measured on **all** mice during
@@ -64,6 +62,6 @@ For (x, y) point on the line: y is the mean glucose levels
 measured from x to (x + window_size). When "window_size" is a parameter given by
 the user (see below). 
 In other words, this plot is a _combination of the plots_ created by the file 
-[plot_single_mouse_avg](plot_single_mouse_avg.py) (see above).
+[plot_single_mouse_avg](plot_single_mouse_avg.py) (see above) for all the mice. 
 
 
