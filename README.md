@@ -46,7 +46,7 @@ The x-axis represents the time from 00:00 to 24:00, and the y-axis the glucose l
 </p>
 
 ### [FILE: plot_single_mouse_avg](plot_single_mouse_avg.py)
-<p1 class="text-justify">
+<p class="right">
 Creating a plot that shows the mean glucose levels measured on a **single** mouse
 during the time of recording. The x-axis represents the time from 00:00 to 24:00, 
 and the y-axis the glucose levels measured. 
@@ -57,7 +57,7 @@ measured from x to (x + window_size). When "window_size" is a parameter given by
 the user (see below).
 
 The graph also has "standard error bars", which show the 25 and 75 percentile calculated from the data.
-</p1>
+</p>
 
 ### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
 <p class="text-justify">
