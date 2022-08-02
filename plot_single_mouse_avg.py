@@ -37,7 +37,7 @@ def plot_data(slided_data_lst, args_lst):
                      facecolor="none", edgecolor="black")
     plt.title("Mean glucose levels in a single mouse: " + args_lst[
         MOUSE_NAME_LOC_IN_ARGS] + "\n sliding window size " + args_lst[WINDOW_SIZE_LOC_IN_ARGS] +
-    " minutes", fontdict = FONT_TITLE)
+              " minutes", fontdict=FONT_TITLE)
     plt.xlabel("Time\n", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels\n", fontdict=FONT_LABEL)
     locs, labels = plt.xticks()
