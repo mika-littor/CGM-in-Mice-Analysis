@@ -48,8 +48,8 @@ The x-axis represents the time from 00:00 to 24:00, and the y-axis the glucose l
 
 Arguments:
 ```
-1. mouse's name 
-2. Path to the CSV file that holds the data measured from a single mouse
+1) Mouse's name 
+2) Path to the CSV file that holds the data measured from a single mouse
 ```
 
 ### [FILE: plot_single_mouse_avg](plot_single_mouse_avg.py)
@@ -66,7 +66,10 @@ The graph also has "standard error bars", which show the 25 and 75 percentile ca
 
 Arguments:
 ```
-
+1) Mouse's name
+2) Path to the CSV file that holds the data measured from a single mouse
+3) Size of the sliding window in minutes
+4) The time between every two recordings of the mouse (depends on the CGM sampling)
 ```
 
 ### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
@@ -75,7 +78,10 @@ Creating a plot similar to the one created by [plot_single_mouse_avg](plot_singl
 
 Arguments:
 ```
-
+1) Mouse's name
+2) Path to the CSV file that holds the data measured from a single mouse
+3) Size of the sliding window in minutes
+4) The time between every two recordings of the mouse (depends on the CGM sampling)
 ```
 
 ### [FILE: plot_all_mice_avg](plot_all_mice_avg.py)
