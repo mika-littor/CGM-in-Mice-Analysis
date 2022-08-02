@@ -17,6 +17,7 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
    matplotlib.pyplot
    numpy
    os.path
+   scipy.interpolate
    statistics
    sys
    ```
