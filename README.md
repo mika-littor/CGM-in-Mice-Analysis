@@ -1,15 +1,16 @@
-<p class="text-justify">
 # Simple Continuous Glucose Monitoring in Freely Moving Mice 
 
 Doron Kleiman, Mika Littor, Mahmoud Nawas, Rachel Ben-Haroush Schyr, Danny Ben-Zvi 
 
 ## Introduction
+<p class="text-justify">
 Welcome to the homepage of the CGM (continuous glucose monitoring) analysis code!
 
 This folder contains 5 code files written in Python 3.
 The files produce plots out of data recorded from mice, using CGM.
 
 You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
+</p>
 
 ## Requirements 
 1. Installation of Python 3 with the following packages:
@@ -54,4 +55,3 @@ Creating a plot
 ### [FILE: plot_all_mice_avg](plot_all_mice_avg.py)
 Creating a plot
 
-</p>
