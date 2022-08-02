@@ -49,13 +49,11 @@ The x-axis represents the time from 00:00 to 24:00, and the y-axis the glucose l
 <p class="text-justify">
 Creating a plot that shows the mean glucose levels measured on a **single** mouse
 during the time of recording. The x-axis represents the time from 00:00 to 24:00, 
-and the y-axis the glucose levels measured. 
-
+and the y-axis the glucose levels measured.
 The mean line on the graph is calculated using "sliding window" technic. 
 For (x, y) point on the line: y is the mean glucose levels 
 measured from x to (x + window_size). When "window_size" is a parameter given by
 the user (see below).
-
 The graph also has "standard error bars", which show the 25 and 75 percentile calculated from the data.
 </p>
 
