@@ -28,15 +28,22 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 2. Download the supplementary file 
 3. Add the files to your working directory
 4. Run the file from 1 using Python workbench 
+5. Enter the arguments needed by the file according to the documentation below
 
 ## Files
 ### [FILE: supplementary_file](supplementary_file.py)
 Add the supplementary file to your working directory (see Setup).
 It contains code that is necessary for creating any of the plots.
+
 ### [FILE: multiple_plots_raw](multiple_plots_raw.py)
 Creating a plot that shows the **"raw"** data recorded on a **single** mouse. 
 Each day that was recorded appears as a single colored line on the plot.
 The x-axis represents the time from 00:00 to 24:00, and the y-axis the glucose levels measured.
+
+Arguments:
+1. mouse's name 
+2. Path to the CSV file that holds the data measured from a single mouse
+
 ### [FILE: plot_single_mouse_avg](plot_single_mouse_avg.py)
 Creating a plot that shows the **mean** glucose levels measured on a **single** mouse
 during the time of recording. The x-axis represents the time from 00:00 to 24:00, 
@@ -49,9 +56,19 @@ the user (see below).
 
 The graph also has "standard error bars", which show the 25 and 75 percentile calculated from the data.
 
+Arguments:
+```
+
+```
+
 ### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
 Creating a plot similar to the one created by [plot_single_mouse_avg](plot_single_mouse_avg.py)
 (see above), except for that the main line on the current plot represents the **median**.
+
+Arguments:
+```
+
+```
 
 ### [FILE: plot_all_mice_avg](plot_all_mice_avg.py)
 Creating a plot that shows the **mean** glucose levels measured on **all** mice during
@@ -65,4 +82,7 @@ the user (see below).
 In other words, this plot is a _combination of the plots_ created by the file 
 [plot_single_mouse_avg](plot_single_mouse_avg.py) (see above) for all the mice. 
 
+Arguments:
+```
 
+```
