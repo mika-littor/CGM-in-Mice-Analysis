@@ -31,8 +31,12 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 
 ## Files
 #### [FILE: supplementary_file](supplementary_file.py)
-    write here about the file
+Add the supplementary file to your working directory (see Setup).
+It contains code that is necessary for creating plots.
 #### [FILE: multiple_plots_raw](multiple_plots_raw.py)
+This file creates a plot that represents the "raw" data recorded on a single mouse. 
+Each day that was recorded appears as a single colored line on the plot.
+The x-axis holds the time from 00:00 to 24:00, and the y-axis holds the glucose levels.
 #### [FILE: plot_single_mouse_avg](plot_single_mouse_avg.py)
 #### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
 #### [FILE: plot_all_mice_avg](plot_all_mice_avg.py)
