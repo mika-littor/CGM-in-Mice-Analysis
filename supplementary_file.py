@@ -25,7 +25,7 @@ FONT_TITLE = {'family': 'serif', 'color': 'black', 'size': 25}
 FONT_LABEL = {'family': 'serif', 'color': 'black', 'size': 20}
 
 # define limit of the y axis
-Y_AXIS_MAX = 190
+Y_AXIS_MAX = 230
 Y_AXIS_MIN = 140
 
 COLOR_HZ_SUBPLOT = "#33FFBE"
