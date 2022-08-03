@@ -205,15 +205,10 @@ def plot_data(slided_data_lst, mouse_name, window_size, type):
     y_coordinates = np.array([x[1] for x in slided_data_lst[1]])
     lst_values = np.array(list(map(float, y_coordinates)))
     lst_time_in_int = np.array([(x.hour * 60 + x.minute) for x in slided_data_lst[0]])
-    # y_smooth = savgol_filter(lst_values, 15, 3)
-    # # create smooth line chart
-    # plt.plot(lst_time_in_int, y_smooth)
-    if type == "Median":
-        # make the error bars smoother
-        y_smooth_25 = savgol_filter(get_25_percentile(slided_data_lst), SIZE_WINDOW_SMOOTH, K_POLYNOMIAL)
-        y_smooth_75 = savgol_filter(get_75_percentile(slided_data_lst), SIZE_WINDOW_SMOOTH, K_POLYNOMIAL)
-        plt.fill_between(slided_data_lst[0], y_smooth_25, y_smooth_75, color=COLOR_ERROR_BARS, alpha=0.1,
-                         edgecolor=None)
+    # make the error bars smoother
+    y_smooth_25 = savgol_filter(get_25_percentile(slided_data_lst), SIZE_WINDOW_SMOOTH, K_POLYNOMIAL)
+    y_smooth_75 = savgol_filter(get_75_percentile(slided_data_lst), SIZE_WINDOW_SMOOTH, K_POLYNOMIAL)
+    plt.fill_between(slided_data_lst[0], y_smooth_25, y_smooth_75, color=COLOR_ERROR_BARS, alpha=0.1, edgecolor=None)
     plt.plot(slided_data_lst[0], lst_values, linewidth=LINE_WIDTH, color="royalblue")
     locs, labels = plt.xticks()
     new_xticks = create_labels_for_x_axis(len(locs))

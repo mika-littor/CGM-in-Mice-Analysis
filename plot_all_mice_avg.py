@@ -44,10 +44,10 @@ def multiple_plots(dict_data, window_size, recording_space):
         y_coordinates = list(map(float, coordinates[1]))
         # plotting the current date
         if first:
-            ax.plot(coordinates[0], y_coordinates, label="mouse 1", color="paleturquoise", linewidth=LINE_WIDTH)
+            ax.plot(coordinates[0], y_coordinates, label="MOUSE 1", color="paleturquoise", linewidth=LINE_WIDTH)
             first = False
         else:
-            ax.plot(coordinates[0], y_coordinates, label="mouse 2", color="royalblue", linewidth=LINE_WIDTH)
+            ax.plot(coordinates[0], y_coordinates, label="MOUSE 2", color="royalblue", linewidth=LINE_WIDTH)
     create_plot(plt, window_size, recording_space)
 
 

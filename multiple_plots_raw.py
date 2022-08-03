@@ -20,7 +20,7 @@ ARGS_NUMBER = 2
 ERR_WRONG_ARGS_NUM = "\nUsage: 2 arguments. 1) Mouse's name 2) Path to csv file with single mouse's data\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
 
-NUM_HOURS = 24  # number of hours for the plot
+NUM_HOURS = 24 # number of hours for the plot
 
 
 def multiple_plots(dict_data, args_lst):
