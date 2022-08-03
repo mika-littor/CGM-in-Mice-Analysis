@@ -30,7 +30,6 @@ LINE_WIDTH = 2
 Y_AXIS_MAX = 210
 Y_AXIS_MIN = 100
 
-
 # Timing between the sliding windows
 SLIDING_WINDOW_DIFF = 2
 
@@ -39,8 +38,10 @@ FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
 LAST_POINT_WIN = datetime(1900, 1, 1, 18, 0)
 
 # for the standard error bars
-SIZE_WINDOW_SMOOTH = 50
-K_POLYNOMIAL = 4
+SIZE_WINDOW_SMOOTH = 30
+K_POLYNOMIAL = 3
+COLOR_ERROR_BARS = "royalblue"
+EDGE_COLOR_ERROR_BAR = "#8ed1fc80"
 
 
 def create_dict_date_values(file_path):
@@ -211,7 +212,8 @@ def plot_data(slided_data_lst, mouse_name, window_size, type):
         # make the error bars smoother
         y_smooth_25 = savgol_filter(get_25_percentile(slided_data_lst), SIZE_WINDOW_SMOOTH, K_POLYNOMIAL)
         y_smooth_75 = savgol_filter(get_75_percentile(slided_data_lst), SIZE_WINDOW_SMOOTH, K_POLYNOMIAL)
-        plt.fill_between(slided_data_lst[0], y_smooth_25, y_smooth_75, facecolor="#EFFDFE", )
+        plt.fill_between(slided_data_lst[0], y_smooth_25, y_smooth_75, color=COLOR_ERROR_BARS, alpha=0.1,
+                         edgecolor=None)
     plt.plot(slided_data_lst[0], lst_values, linewidth=LINE_WIDTH, color="royalblue")
     locs, labels = plt.xticks()
     new_xticks = create_labels_for_x_axis(len(locs))
