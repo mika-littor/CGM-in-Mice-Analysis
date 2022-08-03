@@ -12,11 +12,11 @@
 from supplementary_file import *
 
 BASIC_FILE_PATH = r"C:\Users\mikal\Documents\LAB2\mice_sugar_prj"
-NAME_MICE = ["Naw2_M6", "Naw2_M11"]
+NAME_MICE = ["Naw2_M6", "Naw1_M4"]
 
 # define limit of the y axis
 Y_AXIS_MAX = 190
-Y_AXIS_MIN = 140
+Y_AXIS_MIN = 100
 
 # Location of the argument accepts by the user in the list received.
 PATH_LOC_IN_ARGS = 0
@@ -26,8 +26,6 @@ ARGS_NUMBER = 3
 ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Path to csv directory with mice data\n " \
                      "2) Sliding window size in minutes\n 3) Time in minutes between recordings\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
-
-COLOR_SUBPLOT = "violet"
 
 
 def multiple_plots(dict_data, window_size, recording_space):
@@ -40,19 +38,16 @@ def multiple_plots(dict_data, window_size, recording_space):
     plt.rcParams['date.converter'] = 'concise'
     # change y axis
     plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
-
-    # setting the color for the subplots
-    cm = plt.get_cmap('Paired')  # in order to set the color for the graphs
-    num_colors = len(dict_data.keys())
-    # picking color for the plot
-    ax.set_prop_cycle('color', [cm(1. * i / num_colors) for i in range(num_colors)])
-
+    first = True
     for mouse, coordinates in dict_data.items():
         # sorting the y coordinates
         y_coordinates = list(map(float, coordinates[1]))
         # plotting the current date
-        ax.plot(coordinates[0], y_coordinates, label=mouse)
-    plt.legend(prop={'size': 20})
+        if first:
+            ax.plot(coordinates[0], y_coordinates, label="mouse 1", color="paleturquoise", linewidth=LINE_WIDTH)
+            first = False
+        else:
+            ax.plot(coordinates[0], y_coordinates, label="mouse 2", color="royalblue", linewidth=LINE_WIDTH)
     create_plot(plt, window_size, recording_space)
 
 

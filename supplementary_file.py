@@ -24,13 +24,12 @@ NUM_HOURS = 24  # number of hours for the plot
 FONT_TITLE = {'color': 'black', 'size': 25, 'weight': 'bold'}
 FONT_LABEL = {'color': 'black', 'size': 20, 'weight': 'bold'}
 LABEL_SIZE = 15
+LINE_WIDTH = 2
 
 # define limit of the y axis
-Y_AXIS_MAX = 230
-Y_AXIS_MIN = 140
+Y_AXIS_MAX = 210
+Y_AXIS_MIN = 100
 
-COLOR_HZ_SUBPLOT = "#33FFBE"
-COLOR_HT_SUBPLOT = "#BE33FF"
 
 # Timing between the sliding windows
 SLIDING_WINDOW_DIFF = 2
@@ -38,6 +37,10 @@ SLIDING_WINDOW_DIFF = 2
 # SLIDING WINDOW
 FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
 LAST_POINT_WIN = datetime(1900, 1, 1, 18, 0)
+
+# for the standard error bars
+SIZE_WINDOW_SMOOTH = 50
+K_POLYNOMIAL = 4
 
 
 def create_dict_date_values(file_path):
@@ -201,13 +204,15 @@ def plot_data(slided_data_lst, mouse_name, window_size, type):
     y_coordinates = np.array([x[1] for x in slided_data_lst[1]])
     lst_values = np.array(list(map(float, y_coordinates)))
     lst_time_in_int = np.array([(x.hour * 60 + x.minute) for x in slided_data_lst[0]])
-    plt.plot(slided_data_lst[0], lst_values)
     # y_smooth = savgol_filter(lst_values, 15, 3)
     # # create smooth line chart
     # plt.plot(lst_time_in_int, y_smooth)
-    # adding the error bars
-    # plt.fill_between(slided_data_lst[0], get_25_percentile(slided_data_lst), get_75_percentile(slided_data_lst),
-    #                  facecolor="none", edgecolor="black")
+    if type == "Median":
+        # make the error bars smoother
+        y_smooth_25 = savgol_filter(get_25_percentile(slided_data_lst), SIZE_WINDOW_SMOOTH, K_POLYNOMIAL)
+        y_smooth_75 = savgol_filter(get_75_percentile(slided_data_lst), SIZE_WINDOW_SMOOTH, K_POLYNOMIAL)
+        plt.fill_between(slided_data_lst[0], y_smooth_25, y_smooth_75, facecolor="#EFFDFE", )
+    plt.plot(slided_data_lst[0], lst_values, linewidth=LINE_WIDTH, color="royalblue")
     locs, labels = plt.xticks()
     new_xticks = create_labels_for_x_axis(len(locs))
     plt.xticks(locs, new_xticks)
@@ -226,7 +231,7 @@ def define_plot_parameters(mouse_name, window_size, type):
     plt.rcParams['date.converter'] = 'concise'
     # change y axis
     plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
-    plt.title(type + " glucose levels on a single mouse: " + mouse_name + "\n sliding window size " + window_size +
+    plt.title(type + " glucose levels on a single mouse: MOUSE 1" + "\n sliding window size " + window_size +
               " minutes", fontdict=FONT_TITLE)
     plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels (mg\\dl)", fontdict=FONT_LABEL)
