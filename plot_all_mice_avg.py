@@ -38,16 +38,11 @@ def multiple_plots(dict_data, window_size, recording_space):
     plt.rcParams['date.converter'] = 'concise'
     # change y axis
     plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
-    first = True
     for mouse, coordinates in dict_data.items():
         # sorting the y coordinates
         y_coordinates = list(map(float, coordinates[1]))
         # plotting the current date
-        if first:
-            ax.plot(coordinates[0], y_coordinates, label="MOUSE 1", color="paleturquoise", linewidth=LINE_WIDTH)
-            first = False
-        else:
-            ax.plot(coordinates[0], y_coordinates, label="MOUSE 2", color="royalblue", linewidth=LINE_WIDTH)
+        ax.plot(coordinates[0], y_coordinates, label=mouse, color="paleturquoise", linewidth=LINE_WIDTH)
     create_plot(plt, window_size, recording_space)
 
 
