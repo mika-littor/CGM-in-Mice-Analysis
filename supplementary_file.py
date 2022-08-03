@@ -10,9 +10,10 @@ import numpy as np
 import os.path
 import statistics
 import pandas as pd
-from scipy.interpolate import make_interp_spline, BSpline
 
 # The representation of the columns in the csv file
+from scipy.signal import savgol_filter
+
 COL_DAY = 0
 COL_MONTH = 1
 COL_TIME = 2
@@ -20,8 +21,12 @@ COL_VALUE = 3
 NUM_HOURS = 24  # number of hours for the plot
 
 # GRAPH'S GUI
-FONT_TITLE = {'family': 'Bookman Old Style', 'color': 'navy', 'size': 25}
-FONT_LABEL = {'family': 'Bookman Old Style', 'color': 'black', 'size': 20}
+FONT_TITLE = {'family': 'serif', 'color': 'black', 'size': 25}
+FONT_LABEL = {'family': 'serif', 'color': 'black', 'size': 20}
+
+# define limit of the y axis
+Y_AXIS_MAX = 190
+Y_AXIS_MIN = 140
 
 COLOR_HZ_SUBPLOT = "#33FFBE"
 COLOR_HT_SUBPLOT = "#BE33FF"
@@ -130,13 +135,6 @@ def check_datetime_in_lst(t, lst):
     return -10
 
 
-def get_y_coordinates(slided_data_lst):
-    y_coordinates = []
-    for lst in slided_data_lst[1]:
-        y_coordinates.append(lst[1])
-    return y_coordinates
-
-
 def get_75_percentile(slided_data_lst):
     """
     :param slided_data_lst:
@@ -192,3 +190,42 @@ def arr_times_for_sliding_window(recording_space):
     return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=2)))
 
 
+def plot_data(slided_data_lst, mouse_name, window_size, type):
+    """
+    :param type: median or mean
+    Method to plot multiple times in one figure.
+    It receives a list with the representation of the data in the csv file.
+    """
+    define_plot_parameters(mouse_name, window_size, type)
+    y_coordinates = np.array([x[1] for x in slided_data_lst[1]])
+    lst_values = np.array(list(map(float, y_coordinates)))
+    lst_time_in_int = np.array([(x.hour * 60 + x.minute) for x in slided_data_lst[0]])
+    plt.plot(slided_data_lst[0], lst_values)
+    # y_smooth = savgol_filter(lst_values, 15, 3)
+    # # create smooth line chart
+    # plt.plot(lst_time_in_int, y_smooth)
+    # adding the error bars
+    # plt.fill_between(slided_data_lst[0], get_25_percentile(slided_data_lst), get_75_percentile(slided_data_lst),
+    #                  facecolor="none", edgecolor="black")
+    locs, labels = plt.xticks()
+    new_xticks = create_labels_for_x_axis(len(locs))
+    plt.xticks(locs, new_xticks)
+    plt.show()
+
+
+def define_plot_parameters(mouse_name, window_size, type):
+    """
+    Function that defines parameters for "plot_data"
+    :param type: median or mean
+    :param window_size:
+    :param mouse_name:
+    :param args_lst:
+    :return:
+    """
+    plt.rcParams['date.converter'] = 'concise'
+    # change y axis
+    plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
+    plt.title("Mean glucose levels in a single mouse: " + mouse_name + "\n sliding window size " + window_size +
+              " minutes", fontdict=FONT_TITLE)
+    plt.xlabel("Time", fontdict=FONT_LABEL)
+    plt.ylabel("Glucose Levels (mg\\dl)", fontdict=FONT_LABEL)

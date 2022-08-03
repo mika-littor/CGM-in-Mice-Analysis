@@ -36,14 +36,13 @@ def multiple_plots(dict_data, window_size, recording_space):
     """
     fig, ax = plt.subplots()
     plt.rcParams['date.converter'] = 'concise'
-    plt.yticks(range(0, 600, 10))
-
+    # change y axis
+    plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
     # # setting the color for the
     # cm = plt.get_cmap('tab20b')  # in order to set the color for the graphs
     # num_colors = len(dict_data.keys())
     # # picking color for the plot
     # ax.set_prop_cycle('color', [cm(1. * i / num_colors) for i in range(num_colors)])
-
     for mouse, coordinates in dict_data.items():
         # sorting the y coordinates
         y_coordinates = list(map(float, coordinates[1]))

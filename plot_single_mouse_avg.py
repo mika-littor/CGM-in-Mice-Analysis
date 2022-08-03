@@ -20,30 +20,7 @@ ARGS_NUMBER = 4
 ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Mouse's name\n 2) Path to csv file with single mouse's data\n " \
                      "3) Sliding window size in minutes\n 4) Time in minutes between recordings\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
-
-
-def plot_data(slided_data_lst, args_lst):
-    """
-    Method to plot multiple times in one figure.
-    It receives a list with the representation of the data in the csv file.
-    """
-    plt.rcParams['date.converter'] = 'concise'
-    plt.yticks(range(0, 600, 10))
-    y_coordinates = get_y_coordinates(slided_data_lst)
-    y_coordinates_sorted = list(map(float, y_coordinates))
-    plt.plot(slided_data_lst[0], y_coordinates_sorted, color=COLOR_HZ_SUBPLOT)
-    # adding the error bars
-    plt.fill_between(slided_data_lst[0], get_25_percentile(slided_data_lst), get_75_percentile(slided_data_lst),
-                     facecolor="none", edgecolor="black")
-    plt.title("Mean glucose levels in a single mouse: " + args_lst[
-        MOUSE_NAME_LOC_IN_ARGS] + "\n sliding window size " + args_lst[WINDOW_SIZE_LOC_IN_ARGS] +
-              " minutes", fontdict=FONT_TITLE)
-    plt.xlabel("Time\n", fontdict=FONT_LABEL)
-    plt.ylabel("Glucose Levels\n", fontdict=FONT_LABEL)
-    locs, labels = plt.xticks()
-    new_xticks = create_labels_for_x_axis(len(locs))
-    plt.xticks(locs, new_xticks)
-    plt.show()
+TYPE_PLOT = "Mean"
 
 
 def calc_avg(window, dict_data):
@@ -88,7 +65,7 @@ def main():
     # window_size_ele is a parameter used for calculation of the sliding window
     window_size_ele = int(int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]) / int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]) + 1)
     slided_data_lst = slide_data(dict_data, calc_avg, window_size_ele, int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
-    plot_data(slided_data_lst, args_lst)
+    plot_data(slided_data_lst, args_lst[MOUSE_NAME_LOC_IN_ARGS], args_lst[WINDOW_SIZE_LOC_IN_ARGS], TYPE_PLOT)
 
 
 if __name__ == "__main__":
