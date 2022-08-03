@@ -21,8 +21,9 @@ COL_VALUE = 3
 NUM_HOURS = 24  # number of hours for the plot
 
 # GRAPH'S GUI
-FONT_TITLE = {'family': 'serif', 'color': 'black', 'size': 25}
-FONT_LABEL = {'family': 'serif', 'color': 'black', 'size': 20}
+FONT_TITLE = {'color': 'black', 'size': 25, 'weight': 'bold'}
+FONT_LABEL = {'color': 'black', 'size': 20, 'weight': 'bold'}
+LABEL_SIZE = 15
 
 # define limit of the y axis
 Y_AXIS_MAX = 230
@@ -32,7 +33,7 @@ COLOR_HZ_SUBPLOT = "#33FFBE"
 COLOR_HT_SUBPLOT = "#BE33FF"
 
 # Timing between the sliding windows
-SLIDING_WINDOW_DIFF = 0.1
+SLIDING_WINDOW_DIFF = 2
 
 # SLIDING WINDOW
 FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
@@ -225,7 +226,12 @@ def define_plot_parameters(mouse_name, window_size, type):
     plt.rcParams['date.converter'] = 'concise'
     # change y axis
     plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
-    plt.title("Mean glucose levels in a single mouse: " + mouse_name + "\n sliding window size " + window_size +
+    plt.title(type + " glucose levels on a single mouse: " + mouse_name + "\n sliding window size " + window_size +
               " minutes", fontdict=FONT_TITLE)
-    plt.xlabel("Time", fontdict=FONT_LABEL)
+    plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels (mg\\dl)", fontdict=FONT_LABEL)
+    # delete right and top grid
+    plt.gca().spines['right'].set_visible(False)
+    plt.gca().spines['top'].set_visible(False)
+    # change width of the labels on the axis
+    plt.tick_params(axis='both', labelsize=LABEL_SIZE)

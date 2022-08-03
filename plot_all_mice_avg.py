@@ -12,8 +12,11 @@
 from supplementary_file import *
 
 BASIC_FILE_PATH = r"C:\Users\mikal\Documents\LAB2\mice_sugar_prj"
-NAME_MICE = ["Naw2_M6", "Naw2_M10", "Naw2_M11", "Naw3_M2"]
+NAME_MICE = ["Naw2_M6", "Naw2_M11"]
 
+# define limit of the y axis
+Y_AXIS_MAX = 190
+Y_AXIS_MIN = 140
 
 # Location of the argument accepts by the user in the list received.
 PATH_LOC_IN_ARGS = 0
@@ -24,8 +27,7 @@ ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Path to csv directory with mice 
                      "2) Sliding window size in minutes\n 3) Time in minutes between recordings\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
 
-COLOR_HZ_SUBPLOT = "#33FFBE"
-COLOR_HT_SUBPLOT = "#BE33FF"
+COLOR_SUBPLOT = "violet"
 
 
 def multiple_plots(dict_data, window_size, recording_space):
@@ -38,11 +40,13 @@ def multiple_plots(dict_data, window_size, recording_space):
     plt.rcParams['date.converter'] = 'concise'
     # change y axis
     plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
-    # # setting the color for the
-    # cm = plt.get_cmap('tab20b')  # in order to set the color for the graphs
-    # num_colors = len(dict_data.keys())
-    # # picking color for the plot
-    # ax.set_prop_cycle('color', [cm(1. * i / num_colors) for i in range(num_colors)])
+
+    # setting the color for the subplots
+    cm = plt.get_cmap('Paired')  # in order to set the color for the graphs
+    num_colors = len(dict_data.keys())
+    # picking color for the plot
+    ax.set_prop_cycle('color', [cm(1. * i / num_colors) for i in range(num_colors)])
+
     for mouse, coordinates in dict_data.items():
         # sorting the y coordinates
         y_coordinates = list(map(float, coordinates[1]))
@@ -57,14 +61,19 @@ def create_plot(plt, window_size, recording_space):
     showing the plot created
     :param plt: the plot
     """
-    plt.title("Avg Glucose Levels vs Time\n(sliding window size " + str(window_size) + " minutes)\n",
+    plt.title("Avg Glucose Levels vs Time\nsliding window size " + str(window_size) + " minutes",
               fontdict=FONT_TITLE)
-    plt.xlabel("Time\n", fontdict=FONT_LABEL)
-    plt.ylabel("Glucose Levels\n", fontdict=FONT_LABEL)
+    plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
+    plt.ylabel("Glucose Levels (mg\\dl)", fontdict=FONT_LABEL)
     plt.legend(loc=0)
     locs, labels = plt.xticks()
     new_xticks = create_labels_for_x_axis(len(locs))
     plt.xticks(locs, new_xticks)
+    # delete right and top grid
+    plt.gca().spines['right'].set_visible(False)
+    plt.gca().spines['top'].set_visible(False)
+    # change width of the labels on the axis
+    plt.tick_params(axis='both', labelsize=LABEL_SIZE)
     plt.show()
 
 
