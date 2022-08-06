@@ -228,7 +228,7 @@ def define_plot_parameters(mouse_name, window_size, type):
     plt.rcParams['date.converter'] = 'concise'
     # change y axis
     plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
-    plt.title(type + " Glucose Levels of Mouse: " + "Mouse 1" + "\n Sliding Window Size " + window_size +
+    plt.title(type + " Glucose Levels of Mouse: " + mouse_name + "\n Sliding Window Size " + window_size +
               " Minutes", fontdict=FONT_TITLE)
     plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels (mg\\dl)", fontdict=FONT_LABEL)
