@@ -9,7 +9,7 @@
 # 3) Size of the sliding window in minutes.
 # 4) The time between every two recordings of the mouse
 ###########################################
-from supplementary_file import *
+from supplementary_file_figure import *
 
 # Location of the argument accepts by the user in the list received.
 MOUSE_NAME_LOC_IN_ARGS = 0
