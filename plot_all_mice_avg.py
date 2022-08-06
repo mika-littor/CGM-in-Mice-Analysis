@@ -42,7 +42,7 @@ def multiple_plots(dict_data, window_size, recording_space):
         # sorting the y coordinates
         y_coordinates = list(map(float, coordinates[1]))
         # plotting the current date
-        ax.plot(coordinates[0], y_coordinates, label=mouse, color="paleturquoise", linewidth=LINE_WIDTH)
+        ax.plot(coordinates[0], y_coordinates, label=mouse, linewidth=LINE_WIDTH)
     create_plot(plt, window_size, recording_space)
 
 
