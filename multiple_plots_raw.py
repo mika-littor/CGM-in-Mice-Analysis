@@ -52,6 +52,11 @@ def create_plot(plt, mouse_name):
     plt.xticks(locs, new_xticks)
     # change y axis
     plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
+    # change width of the labels on the axis
+    plt.tick_params(axis='both', labelsize=LABEL_SIZE)
+    # delete right and top grid
+    plt.gca().spines['right'].set_visible(False)
+    plt.gca().spines['top'].set_visible(False)
     plt.show()
 
 

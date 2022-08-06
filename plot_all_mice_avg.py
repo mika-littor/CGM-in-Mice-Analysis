@@ -11,7 +11,6 @@
 ###########################################
 from supplementary_file import *
 
-BASIC_FILE_PATH = r"C:\Users\mikal\Documents\LAB2\mice_sugar_prj"
 NAME_MICE = ["Naw2_M6", "Naw1_M4"]
 
 # define limit of the y axis
@@ -51,7 +50,7 @@ def create_plot(plt, window_size, recording_space):
     showing the plot created
     :param plt: the plot
     """
-    plt.title("Avg Glucose Levels vs Time\nSliding Window Size " + str(window_size) + " minutes",
+    plt.title("Mean Glucose Levels vs Time\nSliding Window Size " + str(window_size) + " minutes",
               fontdict=FONT_TITLE)
     plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels (mg\\dl)", fontdict=FONT_LABEL)
