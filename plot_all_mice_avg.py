@@ -51,7 +51,7 @@ def create_plot(plt, window_size, recording_space):
     showing the plot created
     :param plt: the plot
     """
-    plt.title("Avg Glucose Levels vs Time\nsliding window size " + str(window_size) + " minutes",
+    plt.title("Avg Glucose Levels vs Time\nSliding Window Size " + str(window_size) + " minutes",
               fontdict=FONT_TITLE)
     plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels (mg\\dl)", fontdict=FONT_LABEL)

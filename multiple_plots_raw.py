@@ -7,11 +7,7 @@
 # 1) Name of the mouse.
 # 2) Path to the CSV file that holds the data measured from a single mouse.
 ###########################################
-import sys
-import matplotlib.pyplot as plt
-# from datetime import datetime
-import os.path
-from supplementary_file import create_dict_date_values, create_labels_for_x_axis
+from supplementary_file import *
 
 # Location of the argument accepts by the user in the list received.
 MOUSE_NAME_LOC_IN_ARGS = 0
@@ -37,7 +33,7 @@ def multiple_plots(dict_data, args_lst):
         # sorting the y coordinates
         y_coordinates = list(map(float, coordinates[1]))
         # plotting the current date
-        ax.plot(coordinates[0], y_coordinates, label=date)
+        ax.plot(coordinates[0], y_coordinates, label=date, linewidth=LINE_WIDTH)
     create_plot(plt, args_lst[MOUSE_NAME_LOC_IN_ARGS])
 
 
@@ -47,11 +43,9 @@ def create_plot(plt, mouse_name):
     :param plt: the plot
     :param mouse_name: name of the mouse
     """
-    font1 = {'family': 'Arial', 'color': 'blue', 'size': 20}
-    font2 = {'family': 'Arial', 'color': 'blue', 'size': 15}
-    plt.title(mouse_name, fontdict=font1)
-    plt.xlabel("values", fontdict=font2)
-    plt.ylabel("Time", fontdict=font2)
+    plt.title("Raw Data of mouse: " + mouse_name, fontdict=FONT_TITLE)
+    plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
+    plt.ylabel("Glucose Levels (mg\\dl)", fontdict=FONT_LABEL)
     plt.legend(loc=0)
     locs, labels = plt.xticks()
     new_xticks = create_labels_for_x_axis(len(locs))
