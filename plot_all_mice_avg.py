@@ -7,6 +7,8 @@
 # THE NAME OF THE MOUSE SHOULD BE THE NAME OF THE FILE INSIDE THE DIRECTORY
 # 2) Size of the sliding window in minutes.
 # 3) The time between every two recordings of the mouse.
+# 3) The time between every two recordings of the mouse.
+# 4) MODE: median or mean - mode for plotting the median or the mean plot
 # IN ORDER TO USE PLEASE EDIT THE 'NAME MICE' ARGUMENT.
 ###########################################
 from supplementary_file import *
@@ -21,13 +23,15 @@ Y_AXIS_MIN = 100
 PATH_LOC_IN_ARGS = 0
 WINDOW_SIZE_LOC_IN_ARGS = 1
 RECORDING_SPACE_LOC_IN_ARGS = 2
-ARGS_NUMBER = 3
+TYPE_PLOT_LOC_IN_ARGS = 3
+ARGS_NUMBER = 4
 ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Path to csv directory with mice data\n " \
-                     "2) Sliding window size in minutes\n 3) Time in minutes between recordings\n"
+                     "2) Sliding window size in minutes\n 3) Time in minutes between recordings\n 3) Mode: mean / " \
+                     "median\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
 
 
-def multiple_plots(dict_data, window_size, recording_space):
+def multiple_plots(type_plot, dict_data, window_size, recording_space):
     """
     Method to plot multiple times in one figure.
     It receives a dictionary with the representation of the data in the csv file.
@@ -42,15 +46,16 @@ def multiple_plots(dict_data, window_size, recording_space):
         y_coordinates = list(map(float, coordinates[1]))
         # plotting the current date
         ax.plot(coordinates[0], y_coordinates, label=mouse, linewidth=LINE_WIDTH)
-    create_plot(plt, window_size, recording_space)
+    create_plot(type_plot, plt, window_size, recording_space)
 
 
-def create_plot(plt, window_size, recording_space):
+def create_plot(type_plot, plt, window_size, recording_space):
     """
     showing the plot created
     :param plt: the plot
     """
-    plt.title("Mean Glucose Levels vs Time\nSliding Window Size " + str(window_size) + " minutes",
+    plt.title(type_plot.capitalize() + " Glucose Levels vs Time\nSliding Window Size " + str(window_size) + " "
+                                                                                                            "minutes",
               fontdict=FONT_TITLE)
     plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels (mg\\dL)", fontdict=FONT_LABEL)
@@ -66,7 +71,7 @@ def create_plot(plt, window_size, recording_space):
     plt.show()
 
 
-def calc_avg(window, dict_data):
+def calc_avg(type_plot, dict_data, window):
     """
     :param window: times in datetime for a specific window
     :param dict_data:
@@ -76,12 +81,15 @@ def calc_avg(window, dict_data):
     # maybe calculate the average window for every day, and then calculate the average for the days.
     avgs_lst = []
     for day in dict_data.keys():
-        avg_current_day = calc_per_day(window, dict_data, day)
+        avg_current_day = calc_per_day(type_plot, dict_data, window, day)
         if avg_current_day != None:
             avgs_lst.append(avg_current_day)
     # returning the avg calculation
     if avgs_lst != []:
-        return sum(avgs_lst) / len(avgs_lst)
+        if type_plot == TYPE_PLOT_MEDIAN:
+            return statistics.median(avgs_lst)
+        else:
+            return statistics.mean(avgs_lst)
     else:
         return None
 
@@ -130,10 +138,12 @@ def main():
     for mouse in sorted(NAME_MICE):
         path_file = path_to_mouse(mouse, args_lst[PATH_LOC_IN_ARGS])
         dict_data = create_dict_date_values(path_file)
+        type_plot = args_lst[TYPE_PLOT_LOC_IN_ARGS].lower()
         slided_data_dict = slide_data(dict_data, calc_avg, window_size_ele,
-                                      int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
+                                      int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]), type_plot)
         dict_mouse[mouse] = slided_data_dict
-    multiple_plots(dict_mouse, int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]), int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]))
+    multiple_plots(type_plot, dict_mouse, int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]), int(args_lst[
+                                                                                          RECORDING_SPACE_LOC_IN_ARGS]))
 
 
 if __name__ == "__main__":

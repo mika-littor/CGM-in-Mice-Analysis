@@ -20,6 +20,9 @@ COL_TIME = 2
 COL_VALUE = 3
 NUM_HOURS = 24  # number of hours for the plot
 
+TYPE_PLOT_MEDIAN = "median"
+TYPE_PLOT_MEAN = "mean"
+
 # GRAPH'S GUI
 FONT_TITLE = {'color': 'black', 'size': 25, 'weight': 'bold'}
 FONT_LABEL = {'color': 'black', 'size': 20, 'weight': 'bold'}
@@ -88,7 +91,7 @@ def create_labels_for_x_axis(num_labels):
     return lst_labels
 
 
-def calc_per_day(window, dict_data, day):
+def calc_per_day(type_plot, dict_data, window, day):
     """
     :param window: times in datetime for a specific window
     :param dict_data:
@@ -106,7 +109,10 @@ def calc_per_day(window, dict_data, day):
             # the time was in the list, therefore we insert it into
             lst_val_window.append(float(data_of_day[1][index_time]))
     if lst_val_window != []:
-        return statistics.median(lst_val_window)
+        if type_plot == TYPE_PLOT_MEDIAN:
+            return statistics.median(lst_val_window)
+        else:
+            return statistics.mean(lst_val_window)
     else:
         return None
 
@@ -165,6 +171,7 @@ def arr_times_for_sliding_window(recording_space):
     :return:
     """
     return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=recording_space)))
+
 
 
 

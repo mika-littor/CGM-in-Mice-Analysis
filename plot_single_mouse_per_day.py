@@ -19,8 +19,6 @@ WINDOW_SIZE_LOC_IN_ARGS = 2
 RECORDING_SPACE_LOC_IN_ARGS = 3
 TYPE_PLOT_LOC_IN_ARGS = 4
 ARGS_NUMBER = 5
-TYPE_PLOT_MEDIAN = "median"
-TYPE_PLOT_MEAN = "mean"
 ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Mouse's name\n 2) Path to csv file with single mouse's data\n " \
                      "3) Sliding window size in minutes\n 4) Time in minutes between recordings\n 5) Mode: mean / " \
                      "median\n"
@@ -35,6 +33,31 @@ COLOR_ERROR_BARS = "royalblue"
 EDGE_COLOR_ERROR_BAR = "#8ed1fc80"
 
 
+def create_lst_per_day(type_plot, dict_data, window):
+    """
+    :param type_plot: type of the plot - median or mean
+    :param window: times in datetime for a specific window
+    :param dict_data:
+    :return: list that contains the percentage 25, median/mean, and percentage 75 for every day
+    """
+    lst = []
+    for day in dict_data.keys():
+        avg_current_day = calc_per_day(type_plot, window, dict_data, day)
+        if avg_current_day != None:
+            lst.append(avg_current_day)
+    # returning the calculation
+    if lst != []:
+        if type_plot == TYPE_PLOT_MEDIAN:
+            val = statistics.median(lst)
+        else:
+            val = statistics.mean(lst)
+        percentile_75 = np.percentile(lst, 75)
+        percentile_25 = np.percentile(lst, 25)
+        return [percentile_25, val, percentile_75]
+    else:
+        return None
+
+
 def validation_of_args(args_lst):
     """
     checks if the args are valid - meaning there are only two, and the second is a valid path.
@@ -46,30 +69,6 @@ def validation_of_args(args_lst):
     if not os.path.exists(path):
         raise IOError(ERR_PATH_NOT_EXISTS + path)
 
-
-def create_lst_per_day(type_plot, dict_data, window):
-    """
-    :param type_plot: type of the plot - median or mean
-    :param window: times in datetime for a specific window
-    :param dict_data:
-    :return: list that contains the percentage 25, median/mean, and percentage 75 for every day
-    """
-    lst = []
-    for day in dict_data.keys():
-        avg_current_day = calc_per_day(window, dict_data, day)
-        if avg_current_day != None:
-            lst.append(avg_current_day)
-    # returning the avg calculation
-    if lst != []:
-        if type_plot == TYPE_PLOT_MEDIAN:
-            val = statistics.mean(lst)
-        else:
-            val = statistics.median(lst)
-        percentile_75 = np.percentile(lst, 75)
-        percentile_25 = np.percentile(lst, 25)
-        return [percentile_25, val, percentile_75]
-    else:
-        return None
 
 
 def define_plot_parameters(mouse_name, window_size, type):
@@ -84,7 +83,7 @@ def define_plot_parameters(mouse_name, window_size, type):
     plt.rcParams['date.converter'] = 'concise'
     # change y axis
     plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
-    plt.title(type + " Glucose Levels of Mouse: " + mouse_name + "\n Sliding Window Size " + window_size +
+    plt.title(type.capitalize() + " Glucose Levels of Mouse: " + mouse_name + "\n Sliding Window Size " + window_size +
               " Minutes", fontdict=FONT_TITLE)
     plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
     plt.ylabel("Glucose Levels (mg\\dl)", fontdict=FONT_LABEL)
