@@ -41,10 +41,10 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 6. Run the file from 2 using Python workbench 
 7. Enter the arguments needed by the file according to the documentation below
 
-#### Special Setup for the [plot_all_mice_avg](plot_all_mice_avg.py) file
+#### Special Setup for the [plot_all_mice_avg](plot_all_mice.py) file
 1. Name each one of the CSV files inside the working directory 
 after the name of the mouse it represent
-2. Edit the global variable ```NAME_MICE``` inside the [plot_all_mice_avg](plot_all_mice_avg.py) 
+2. Edit the global variable ```NAME_MICE``` inside the [plot_all_mice_avg](plot_all_mice.py) 
 file according to the mice's names
 
 ## Files
@@ -97,7 +97,7 @@ inside the working directory
 4) The time between every two recordings of the mouse (depends on the CGM sampling)
 ```
 
-### [FILE: plot_all_mice_avg](plot_all_mice_avg.py)
+### [FILE: plot_all_mice_avg](plot_all_mice.py)
 Creating a plot that shows the **mean** glucose levels measured on **all** mice during
 the time of recording. The x-axis represents the time from 00:00 to 24:00, 
 and the y-axis the glucose levels measured. 
