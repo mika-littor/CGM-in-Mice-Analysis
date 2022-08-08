@@ -30,6 +30,7 @@ ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Path to csv directory with mice 
                      "median\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
 
+LEGEND_SIZE = 20
 
 def multiple_plots(type_plot, dict_data, window_size, recording_space):
     """
@@ -68,6 +69,7 @@ def create_plot(type_plot, plt, window_size, recording_space):
     plt.gca().spines['top'].set_visible(False)
     # change width of the labels on the axis
     plt.tick_params(axis='both', labelsize=LABEL_SIZE)
+    plt.legend(loc=2, prop={'size': LEGEND_SIZE})
     plt.show()
 
 
