@@ -18,6 +18,8 @@ ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
 
 NUM_HOURS = 24 # number of hours for the plot
 
+LEGEND_SIZE = 20
+
 
 def multiple_plots(dict_data, args_lst):
     """
@@ -57,6 +59,7 @@ def create_plot(plt, mouse_name):
     # delete right and top grid
     plt.gca().spines['right'].set_visible(False)
     plt.gca().spines['top'].set_visible(False)
+    plt.legend(loc=2, prop={'size': LEGEND_SIZE})
     plt.show()
 
 
