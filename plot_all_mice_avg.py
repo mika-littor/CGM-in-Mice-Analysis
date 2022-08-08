@@ -13,7 +13,7 @@
 ###########################################
 from supplementary_file import *
 
-NAME_MICE = ["Naw2_M6", "Naw1_M4"]
+NAME_MICE = ["Naw2_M11", "Naw2_M10"]
 
 # define limit of the y axis
 Y_AXIS_MAX = 190
