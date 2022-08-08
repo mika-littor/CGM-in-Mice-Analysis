@@ -77,7 +77,7 @@ def calc_avg(window, dict_data):
     avgs_lst = []
     for day in dict_data.keys():
         avg_current_day = calc_per_day(window, dict_data, day)
-        if avg_current_day != -10:
+        if avg_current_day != None:
             avgs_lst.append(avg_current_day)
     # returning the avg calculation
     if avgs_lst != []:
@@ -99,7 +99,7 @@ def check_datetime_in_lst(t, lst):
             return index_time
         else:
             index_time += 1
-    return -10
+    return None
 
 
 def path_to_mouse(mouse, basic_path):

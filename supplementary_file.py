@@ -35,13 +35,7 @@ SLIDING_WINDOW_DIFF = 2
 
 # SLIDING WINDOW
 FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
-LAST_POINT_WIN = datetime(1900, 1, 1, 18, 0)
-
-# for the standard error bars
-SIZE_WINDOW_SMOOTH = 30
-K_POLYNOMIAL = 3
-COLOR_ERROR_BARS = "royalblue"
-EDGE_COLOR_ERROR_BAR = "#8ed1fc80"
+LAST_POINT_WIN = datetime(1900, 1, 1, 18, 00)
 
 
 def create_dict_date_values(file_path):
@@ -94,13 +88,6 @@ def create_labels_for_x_axis(num_labels):
     return lst_labels
 
 
-def datetime_range(start, end, delta):
-    current = start
-    while current <= end:
-        yield current
-        current += delta
-
-
 def calc_per_day(window, dict_data, day):
     """
     :param window: times in datetime for a specific window
@@ -115,13 +102,13 @@ def calc_per_day(window, dict_data, day):
     for t in window:
         # checking if the time was recorded that day. If so, adds its value to
         index_time = check_datetime_in_lst(t, data_of_day[0])
-        if index_time != -10:
+        if index_time != None:
             # the time was in the list, therefore we insert it into
             lst_val_window.append(float(data_of_day[1][index_time]))
     if lst_val_window != []:
         return statistics.median(lst_val_window)
     else:
-        return -10
+        return None
 
 
 def check_datetime_in_lst(t, lst):
@@ -137,32 +124,10 @@ def check_datetime_in_lst(t, lst):
             return index_time
         else:
             index_time += 1
-    return -10
+    return None
 
 
-def get_75_percentile(slided_data_lst):
-    """
-    :param slided_data_lst:
-    :return: list of values of the 75 percentile out of the data recorded
-    """
-    percentage_75_coordinates = []
-    for lst in slided_data_lst[1]:
-        percentage_75_coordinates.append(lst[2])
-    return percentage_75_coordinates
-
-
-def get_25_percentile(slided_data_lst):
-    """
-    :param slided_data_lst:
-    :return: list of values of the 25 percentile out of the data recorded
-    """
-    percentage_25_coordinates = []
-    for lst in slided_data_lst[1]:
-        percentage_25_coordinates.append(lst[0])
-    return percentage_25_coordinates
-
-
-def slide_data(dict_data, func, window_size, recording_space):
+def slide_data(dict_data, func, window_size, recording_space, type_plot):
     """
     :param func: func_to_slide_data_on
     :param dict_data:
@@ -172,19 +137,26 @@ def slide_data(dict_data, func, window_size, recording_space):
     arr_times = arr_times_for_sliding_window(recording_space)
     i = 0
     # Initialize the list to return.
-    moving_averages = [[], []]
+    moving_lst = [[], []]
     # Loop through the array to consider
     while i < len(arr_times) - window_size + 1:
         # Store elements from i to i+window_size in list to get the current window
         window = arr_times[i: i + window_size]
         # Calculate the average of current window
-        window_average = func(window, dict_data)
+        window_average = func(type_plot, dict_data, window)
         # Store the average of current window in moving average list
-        moving_averages[0].append(arr_times[i])
-        moving_averages[1].append(window_average)
+        moving_lst[0].append(arr_times[i])
+        moving_lst[1].append(window_average)
         # Shift window to right by one position
         i += 1
-    return moving_averages
+    return moving_lst
+
+
+def datetime_range(start, end, delta):
+    current = start
+    while current <= end:
+        yield current
+        current += delta
 
 
 def arr_times_for_sliding_window(recording_space):
@@ -195,45 +167,5 @@ def arr_times_for_sliding_window(recording_space):
     return list(datetime_range(FIRST_POINT_WIN, LAST_POINT_WIN, timedelta(minutes=recording_space)))
 
 
-def plot_data(slided_data_lst, mouse_name, window_size, type):
-    """
-    :param type: median or mean
-    Method to plot multiple times in one figure.
-    It receives a list with the representation of the data in the csv file.
-    """
-    define_plot_parameters(mouse_name, window_size, type)
-    y_coordinates = np.array([x[1] for x in slided_data_lst[1]])
-    lst_values = np.array(list(map(float, y_coordinates)))
-    lst_time_in_int = np.array([(x.hour * 60 + x.minute) for x in slided_data_lst[0]])
-    # make the error bars smoother
-    y_smooth_25 = savgol_filter(get_25_percentile(slided_data_lst), SIZE_WINDOW_SMOOTH, K_POLYNOMIAL)
-    y_smooth_75 = savgol_filter(get_75_percentile(slided_data_lst), SIZE_WINDOW_SMOOTH, K_POLYNOMIAL)
-    plt.fill_between(slided_data_lst[0], y_smooth_25, y_smooth_75, color=COLOR_ERROR_BARS, alpha=0.1, edgecolor=None)
-    plt.plot(slided_data_lst[0], lst_values, linewidth=LINE_WIDTH, color="royalblue")
-    locs, labels = plt.xticks()
-    new_xticks = create_labels_for_x_axis(len(locs))
-    plt.xticks(locs, new_xticks)
-    plt.show()
 
 
-def define_plot_parameters(mouse_name, window_size, type):
-    """
-    Function that defines parameters for "plot_data"
-    :param type: median or mean
-    :param window_size:
-    :param mouse_name:
-    :param args_lst:
-    :return:
-    """
-    plt.rcParams['date.converter'] = 'concise'
-    # change y axis
-    plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
-    plt.title(type + " Glucose Levels of Mouse: " + mouse_name + "\n Sliding Window Size " + window_size +
-              " Minutes", fontdict=FONT_TITLE)
-    plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
-    plt.ylabel("Glucose Levels (mg\\dl)", fontdict=FONT_LABEL)
-    # delete right and top grid
-    plt.gca().spines['right'].set_visible(False)
-    plt.gca().spines['top'].set_visible(False)
-    # change width of the labels on the axis
-    plt.tick_params(axis='both', labelsize=LABEL_SIZE)
