@@ -46,8 +46,8 @@ def create_plot(plt, mouse_name):
     :param mouse_name: name of the mouse
     """
     plt.title("Raw Data of Mouse: " + mouse_name, fontdict=FONT_TITLE)
-    plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
-    plt.ylabel("Glucose Levels (mg\\dL)", fontdict=FONT_LABEL)
+    plt.xlabel("\nTime (hour)", fontdict=FONT_LABEL)
+    plt.ylabel("Glucose Levels (mg\\dL)\n", fontdict=FONT_LABEL)
     plt.legend(loc=0)
     locs, labels = plt.xticks()
     new_xticks = create_labels_for_x_axis(len(locs))

@@ -58,8 +58,8 @@ def create_plot(type_plot, plt, window_size, recording_space):
     plt.title(type_plot.capitalize() + " Glucose Levels vs Time\nSliding Window Size " + str(window_size) + " "
                                                                                                             "minutes",
               fontdict=FONT_TITLE)
-    plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
-    plt.ylabel("Glucose Levels (mg\\dL)", fontdict=FONT_LABEL)
+    plt.xlabel("\nTime (hour)", fontdict=FONT_LABEL)
+    plt.ylabel("Glucose Levels (mg\\dL)\n", fontdict=FONT_LABEL)
     plt.legend(loc=0)
     locs, labels = plt.xticks()
     new_xticks = create_labels_for_x_axis(len(locs))

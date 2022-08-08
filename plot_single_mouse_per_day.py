@@ -24,7 +24,6 @@ ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Mouse's name\n 2) Path to csv fi
                      "median\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
 
-
 COLOR_SINGLE_MOUSE_PLOT = "royalblue"
 # for the standard error bars
 SIZE_WINDOW_SMOOTH = 30
@@ -42,7 +41,7 @@ def create_lst_per_day(type_plot, dict_data, window):
     """
     lst = []
     for day in dict_data.keys():
-        avg_current_day = calc_per_day(type_plot, window, dict_data, day)
+        avg_current_day = calc_per_day(type_plot, dict_data, window, day)
         if avg_current_day != None:
             lst.append(avg_current_day)
     # returning the calculation
@@ -70,7 +69,6 @@ def validation_of_args(args_lst):
         raise IOError(ERR_PATH_NOT_EXISTS + path)
 
 
-
 def define_plot_parameters(mouse_name, window_size, type):
     """
     Function that defines parameters for "plot_data"
@@ -85,8 +83,8 @@ def define_plot_parameters(mouse_name, window_size, type):
     plt.setp(plt.gca(), ylim=(Y_AXIS_MIN, Y_AXIS_MAX))
     plt.title(type.capitalize() + " Glucose Levels of Mouse: " + mouse_name + "\n Sliding Window Size " + window_size +
               " Minutes", fontdict=FONT_TITLE)
-    plt.xlabel("Time (hour)", fontdict=FONT_LABEL)
-    plt.ylabel("Glucose Levels (mg\\dl)", fontdict=FONT_LABEL)
+    plt.xlabel("\nTime (hour)", fontdict=FONT_LABEL)
+    plt.ylabel("Glucose Levels (mg\\dL)\n", fontdict=FONT_LABEL)
     # delete right and top grid
     plt.gca().spines['right'].set_visible(False)
     plt.gca().spines['top'].set_visible(False)

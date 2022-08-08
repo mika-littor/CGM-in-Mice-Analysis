@@ -24,8 +24,8 @@ TYPE_PLOT_MEDIAN = "median"
 TYPE_PLOT_MEAN = "mean"
 
 # GRAPH'S GUI
-FONT_TITLE = {'color': 'black', 'size': 25, 'weight': 'bold'}
-FONT_LABEL = {'color': 'black', 'size': 20, 'weight': 'bold'}
+FONT_TITLE = {'family': 'Arial Rounded MT Bold', 'color': 'black', 'size': 25, 'weight': 'bold'}
+FONT_LABEL = {'family': 'Arial Rounded MT Bold', 'color': 'black', 'size': 20, 'weight': 'bold'}
 LABEL_SIZE = 15
 LINE_WIDTH = 2
 
