@@ -63,7 +63,7 @@ Arguments:
 1) Mouse's name 
 2) Path to the CSV file that holds the data measured from a single mouse, inside the working directory
 ```
-Example (our data recordings were from 00:00 to 18:00):
+#### Example (our data recordings were from 00:00 to 18:00):
 
 ![raw_image](graphs/raw%20data%20single%20mouse.png)
 
@@ -90,7 +90,7 @@ inside the working directory
 5) MODE: Median or Mean
 ```
 
-Examples (our data recordings were from 00:00 to 18:00):
+#### Examples (our data recordings were from 00:00 to 18:00):
 
 ![raw_image](graphs/plot%20single%20mouse%20mean.png)
 ![raw_image](graphs/plot%20single%20mouse%20median.png)
@@ -119,7 +119,7 @@ Arguments:
 3) The time between every two recordings of the mouse (depends on the CGM sampling)
 4) MODE: Median or Mean
 ```
-Examples (our data recordings were from 00:00 to 18:00):
+#### Examples (our data recordings were from 00:00 to 18:00):
 
 ![raw_image](graphs/all%20mice%20glucose%20measurments%20mean.png)
 ![raw_image](graphs/all%20mice%20glucose%20measurments%20median.png)
