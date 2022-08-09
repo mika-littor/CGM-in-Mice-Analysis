@@ -38,14 +38,15 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 3. Download from GitHub the file that creates the plot you are interested in 
 4. Download from GitHub the supplementary file 
 5. Add the files from 3+4 to the working directory
-6. Run the file from 2 using Python workbench 
-7. Enter the arguments needed by the file according to the documentation below
+6. Run the file from 2 using a workbench for python
+7. Enter the arguments needed for the program by the file according to the documentation below
 
-#### Special Setup for the [plot_all_mice_avg](plot_all_mice.py) file
+#### Special Setup for the [plot_all_mice_avg](plot_all_mice.py) file:
 1. Name each one of the CSV files inside the working directory 
-after the name of the mouse it represent
-2. Edit the global variable ```NAME_MICE``` inside the [plot_all_mice_avg](plot_all_mice.py) 
-file according to the mice's names
+after the name of the mouse it represents 
+(e.g. the data of the mouse "Miki" should be stored inside "Miki.csv")
+2. Edit the global variable ```NAME_MICE``` (list of strings) inside the [plot_all_mice_avg](plot_all_mice.py) 
+file according to the mice's names 
 
 ## Files
 ### [FILE: supplementary_file](supplementary_file.py)

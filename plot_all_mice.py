@@ -13,7 +13,7 @@
 ###########################################
 from supplementary_file import *
 
-NAME_MICE = ["Naw2_M11", "Naw2_M10"]
+NAME_MICE = ["MouseA", "MouseB"]
 
 # define limit of the y axis
 Y_AXIS_MAX = 190
@@ -31,6 +31,7 @@ ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Path to csv directory with mice 
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
 
 LEGEND_SIZE = 20
+
 
 def multiple_plots(type_plot, dict_data, window_size, recording_space):
     """
@@ -137,10 +138,10 @@ def main():
     args_lst = sys.argv[1:]
     validation_of_args(args_lst)
     window_size_ele = int(int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]) / int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]) + 1)
+    type_plot = args_lst[TYPE_PLOT_LOC_IN_ARGS].lower()
     for mouse in sorted(NAME_MICE):
         path_file = path_to_mouse(mouse, args_lst[PATH_LOC_IN_ARGS])
         dict_data = create_dict_date_values(path_file)
-        type_plot = args_lst[TYPE_PLOT_LOC_IN_ARGS].lower()
         slided_data_dict = slide_data(dict_data, calc_avg, window_size_ele,
                                       int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]), type_plot)
         dict_mouse[mouse] = slided_data_dict

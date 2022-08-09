@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os.path
 import statistics
-import pandas as pd
 
 # The representation of the columns in the csv file
 from scipy.signal import savgol_filter
