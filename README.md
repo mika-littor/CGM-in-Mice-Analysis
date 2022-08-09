@@ -64,7 +64,7 @@ Arguments:
 2) Path to the CSV file that holds the data measured from a single mouse, inside the working directory
 ```
 #### Example (our data recordings were from 00:00 to 18:00):
-![raw_image](graphs/raw%20data%20single%20mouse.png)
+![raw_image](Images/raw%20data%20single%20mouse.png)
 
 ### [FILE: plot_single_mouse_per_day](plot_single_mouse_per_day.py)
 Creating a plot that shows the glucose levels measured on a **single** mouse
@@ -90,8 +90,8 @@ inside the working directory
 ```
 
 #### Examples (our data recordings were from 00:00 to 18:00):
-![raw_image](graphs/plot%20single%20mouse%20mean.png)
-![raw_image](graphs/plot%20single%20mouse%20median.png)
+![raw_image](Images/plot%20single%20mouse%20mean.png)
+![raw_image](Images/plot%20single%20mouse%20median.png)
 
 
 ### [FILE: plot_all_mice_avg](plot_all_mice.py)
@@ -119,5 +119,5 @@ Arguments:
 ```
 #### Examples (our data recordings were from 00:00 to 18:00):
 
-![raw_image](graphs/all%20mice%20glucose%20measurments%20mean.png)
-![raw_image](graphs/all%20mice%20glucose%20measurments%20median.png)
+![raw_image](Images/all%20mice%20glucose%20measurments%20mean.png)
+![raw_image](Images/all%20mice%20glucose%20measurments%20median.png)
