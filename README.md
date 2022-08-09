@@ -66,7 +66,8 @@ directory
 ```
 
 Example:
-![](C:\Users\mikal\Documents\LAB2\PROJECT_MICE_CGM\graphs\raw data single mouse.png)
+
+![raw_image](graphs/raw%20data%20single%20mouse.png)
 
 ### [FILE: plot_single_mouse_per_day](plot_single_mouse_per_day.py)
 Creating a plot that shows the **mean** glucose levels measured on a **single** mouse
