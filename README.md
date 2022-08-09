@@ -61,8 +61,7 @@ The x-axis represents the time from 00:00 to 24:00, and the y-axis the glucose l
 ```
 Arguments:
 1) Mouse's name 
-2) Path to the CSV file that holds the data measured from a single mouse, inside the working 
-directory
+2) Path to the CSV file that holds the data measured from a single mouse, inside the working directory
 ```
 
 ![raw_image](graphs/raw%20data%20single%20mouse.png)
