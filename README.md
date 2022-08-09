@@ -1,6 +1,4 @@
-<center>
 # Simple Continuous Glucose Monitoring in Freely Moving Mice 
-</center>
 
 Doron Kleiman, Mika Littor, Mahmoud Nawas, Rachel Ben-Haroush Schyr, Danny Ben-Zvi 
 
