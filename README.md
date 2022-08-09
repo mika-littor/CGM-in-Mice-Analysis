@@ -86,41 +86,36 @@ Arguments:
 inside the working directory
 3) Size of the sliding window in minutes
 4) The time between every two recordings of the mouse (depends on the CGM sampling)
-5) MODE: median or mean
+5) MODE: Median or Mean
 ```
 
 ![raw_image](graphs/plot%20single%20mouse%20mean.png)
 ![raw_image](graphs/plot%20single%20mouse%20median.png)
 
 
-### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
-Creating a plot similar to the one created by [plot_single_mouse_avg](plot_single_mouse_avg.py)
-(see above), except for that the main line on the current plot represents the **median**.
-
-Arguments:
-```
-1) Mouse's name
-2) Path to the CSV file that holds the data measured from a single mouse, 
-inside the working directory
-3) Size of the sliding window in minutes
-4) The time between every two recordings of the mouse (depends on the CGM sampling)
-```
-
 ### [FILE: plot_all_mice_avg](plot_all_mice.py)
-Creating a plot that shows the **mean** glucose levels measured on **all** mice during
+Creating a plot that shows the glucose levels measured on **all** mice during
 the time of recording. The x-axis represents the time from 00:00 to 24:00, 
 and the y-axis the glucose levels measured. 
 
-_Each line on the graph represents the mean values of a single mouse._ It is calculated using "sliding window" technic. 
-For (x, y) point on the line: y is the mean glucose levels 
-measured from x to (x + window_size). When "window_size" is a parameter given by
+The plot could either represent the **mean** or the **median** values of the data, 
+according to the user's choice (see Arguments below).
+_Each line on the graph represents the mean/median values of a single mouse._
+It is calculated using "sliding window" technic. 
+Meaning that for a point (x, y) on the line - y is the mean glucose levels 
+measured from x to [x + window_size]. When "window_size" is a parameter given by
 the user (see below). 
-In other words, this plot is a _combination of the plots_ created by the file 
-[plot_single_mouse_avg](plot_single_mouse_avg.py) (see above) for all the mice. 
+In other words, this plot is a _combination of the plots_ created by the 
+[FILE: plot_single_mouse_per_day](plot_single_mouse_per_day.py) (see above) for all the mice. 
 
-Arguments:
+
 ```
+Arguments:
 1) Path to the working directory
 2) Size of the sliding window in minutes.
 3) The time between every two recordings of the mouse (depends on the CGM sampling)
+4) MODE: Median or Mean
 ```
+
+![raw_image](graphs/plo)
+![raw_image](graphs/plot%20single%20mouse%20median.png)
