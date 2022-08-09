@@ -37,7 +37,7 @@ SLIDING_WINDOW_DIFF = 2
 
 # SLIDING WINDOW
 FIRST_POINT_WIN = datetime(1900, 1, 1, 0, 0)
-LAST_POINT_WIN = datetime(1900, 1, 1, 18, 00)
+LAST_POINT_WIN = datetime(1900, 1, 1, 24, 00)
 
 
 def create_dict_date_values(file_path):
