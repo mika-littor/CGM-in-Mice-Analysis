@@ -58,8 +58,8 @@ Creating a plot that shows the **"raw"** data recorded on a **single** mouse.
 Each day that was recorded appears as a single colored line on the plot.
 The x-axis represents the time from 00:00 to 24:00, and the y-axis the glucose levels measured.
 
-Arguments:
 ```
+Arguments:
 1) Mouse's name 
 2) Path to the CSV file that holds the data measured from a single mouse, inside the working 
 directory
