@@ -45,7 +45,7 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 1. Name each one of the CSV files inside the working directory 
 after the name of the mouse it represents 
 (e.g. the data of the mouse "Miki" should be stored inside "Miki.csv")
-2. Edit the global variable ```NAME_MICE``` (list of strings) inside the [plot_all_mice_avg](plot_all_mice.py) 
+2. Edit the global variable ```NAME_MICE``` (list of strings) inside the [plot_all_mice](plot_all_mice.py) 
 file according to the mice's names 
 
 ## Files
