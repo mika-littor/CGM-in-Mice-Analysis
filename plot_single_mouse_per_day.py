@@ -19,7 +19,7 @@ WINDOW_SIZE_LOC_IN_ARGS = 2
 RECORDING_SPACE_LOC_IN_ARGS = 3
 TYPE_PLOT_LOC_IN_ARGS = 4
 ARGS_NUMBER = 5
-ERR_WRONG_ARGS_NUM = "\nUsage: 3 arguments\n 1) Mouse's name\n 2) Path to csv file with single mouse's data\n " \
+ERR_WRONG_ARGS_NUM = "\nUsage: 5 arguments\n 1) Mouse's name\n 2) Path to csv file with single mouse's data\n " \
                      "3) Sliding window size in minutes\n 4) Time in minutes between recordings\n 5) Mode: mean / " \
                      "median\n"
 ERR_PATH_NOT_EXISTS = "\nThe file does not exist on the path: "
