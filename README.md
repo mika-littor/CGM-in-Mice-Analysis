@@ -67,25 +67,26 @@ Arguments:
 ![raw_image](graphs/raw%20data%20single%20mouse.png)
 
 ### [FILE: plot_single_mouse_per_day](plot_single_mouse_per_day.py)
-Creating a plot that shows the **mean** glucose levels measured on a **single** mouse
+Creating a plot that shows the glucose levels measured on a **single** mouse
 during the time of recording. The x-axis represents the time from 00:00 to 24:00, 
-and the y-axis the glucose levels measured. 
+and the y-axis the glucose levels measured.
 
-The mean line on the graph is calculated using "sliding window" technic. 
-For (x, y) point on the line: y is the mean glucose levels 
-measured from x to (x + window_size). When "window_size" is a parameter given by
+The plot could either represent the **mean** or the **median** values of the data, 
+according to the user's choice (see Arguments below).
+The mean/median line on the graph is calculated using "sliding window" technic. 
+Meaning that for a point (x, y) on the line - y is the mean glucose levels 
+measured from x to [x + window_size]. When "window_size" is a parameter given by
 the user (see below).
 
 The graph also has "standard error bars", which show the 25 and 75 percentile calculated from the data.
-
-Arguments:
 ```
+Arguments:
 1) Mouse's name
 2) Path to the CSV file that holds the data measured from a single mouse, 
 inside the working directory
 3) Size of the sliding window in minutes
 4) The time between every two recordings of the mouse (depends on the CGM sampling)
-5) 
+5) MODE: median or mean
 ```
 
 ### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
