@@ -89,6 +89,10 @@ inside the working directory
 5) MODE: median or mean
 ```
 
+![raw_image](graphs/plot%20single%20mouse%20mean.png)
+![raw_image](graphs/plot%20single%20mouse%20median.png)
+
+
 ### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
 Creating a plot similar to the one created by [plot_single_mouse_avg](plot_single_mouse_avg.py)
 (see above), except for that the main line on the current plot represents the **median**.
