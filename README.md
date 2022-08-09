@@ -90,7 +90,6 @@ inside the working directory
 ```
 
 #### Examples (our data recordings were from 00:00 to 18:00):
-
 ![raw_image](graphs/plot%20single%20mouse%20mean.png)
 ![raw_image](graphs/plot%20single%20mouse%20median.png)
 
