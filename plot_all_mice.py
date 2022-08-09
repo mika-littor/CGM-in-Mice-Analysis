@@ -118,7 +118,7 @@ def path_to_mouse(mouse, basic_path):
     :param mouse: name of the current mouse
     :return: path to the current mouse's file
     """
-    return basic_path + "\\" + mouse + "\\" + mouse.replace(" ", "_") + "_Hours.csv"
+    return basic_path + "\\" + mouse.replace(" ", "_") + ".csv"
 
 
 def validation_of_args(args_lst):
