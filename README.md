@@ -117,5 +117,5 @@ Arguments:
 4) MODE: Median or Mean
 ```
 
-![raw_image](graphs/plo)
-![raw_image](graphs/plot%20single%20mouse%20median.png)
+![raw_image](graphs/all%20mice%20glucose%20measurments%20mean.png)
+![raw_image](graphs/all%20mice%20glucose%20measurments%20median.png)
