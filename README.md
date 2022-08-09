@@ -64,7 +64,6 @@ Arguments:
 2) Path to the CSV file that holds the data measured from a single mouse, inside the working directory
 ```
 #### Example (our data recordings were from 00:00 to 18:00):
-
 ![raw_image](graphs/raw%20data%20single%20mouse.png)
 
 ### [FILE: plot_single_mouse_per_day](plot_single_mouse_per_day.py)
