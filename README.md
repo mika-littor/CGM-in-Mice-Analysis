@@ -41,7 +41,7 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 6. Run the file from 2 using a workbench for python
 7. Enter the arguments needed for the program by the file according to the documentation below
 
-#### Special Setup for the [plot_all_mice_avg](plot_all_mice.py) file:
+#### Special Setup for the [plot_all_mice](plot_all_mice.py) file:
 1. Name each one of the CSV files inside the working directory 
 after the name of the mouse it represents 
 (e.g. the data of the mouse "Miki" should be stored inside "Miki.csv")
