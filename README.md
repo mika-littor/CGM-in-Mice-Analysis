@@ -61,10 +61,14 @@ The x-axis represents the time from 00:00 to 24:00, and the y-axis the glucose l
 Arguments:
 ```
 1) Mouse's name 
-2) Path to the CSV file that holds the data measured from a single mouse, inside the working directory
+2) Path to the CSV file that holds the data measured from a single mouse, inside the working 
+directory
 ```
 
-### [FILE: plot_single_mouse_avg](plot_single_mouse_avg.py)
+Example:
+![](C:\Users\mikal\Documents\LAB2\PROJECT_MICE_CGM\graphs\raw data single mouse.png)
+
+### [FILE: plot_single_mouse_per_day](plot_single_mouse_per_day.py)
 Creating a plot that shows the **mean** glucose levels measured on a **single** mouse
 during the time of recording. The x-axis represents the time from 00:00 to 24:00, 
 and the y-axis the glucose levels measured. 
@@ -83,6 +87,7 @@ Arguments:
 inside the working directory
 3) Size of the sliding window in minutes
 4) The time between every two recordings of the mouse (depends on the CGM sampling)
+5) 
 ```
 
 ### [FILE: plot_single_mouse_std](plot_single_mouse_std.py)
