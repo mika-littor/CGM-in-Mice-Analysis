@@ -25,6 +25,11 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
    ```
 2. CSV file for every mouse with the data measured using the CGM.
 
+   The "FreeStyle Libre" sensor collects a data point every minute and the sensors 
+software program creates a graph from the collected data. The sensors program can also
+export the data points to csv file, but the file it exports has data points with 
+5 minute intervals excluding some of the data points.  
+
    The data we exported from "Abbott FreeStyle Libre" device has a 2 minutes interval
 (provided by analysis of the plots created by the devices' program).
 However, by default the program of the device exports the data to a csv file using 
