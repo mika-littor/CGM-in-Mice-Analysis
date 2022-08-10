@@ -7,7 +7,7 @@ Welcome to the homepage of the CGM (continuous glucose monitoring) analysis code
 
 This folder contains 5 code files written in Python 3.
 The files produce plots out of data recorded from mice, using CGM 
-(We used "Abbott FreeStyle Libre").
+(we used "Abbott FreeStyle Libre").
 
 
 You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
@@ -117,7 +117,8 @@ It is calculated using "sliding window" technic.
 Meaning that for a point (x, y) on the line - y is the mean glucose levels 
 measured from x to [x + window_size]. When "window_size" is a parameter given by
 the user (see arguments below). 
-Note that missing data from a certain day on a given window, is omitted from the analysis (complete case analysis).
+Note that missing data from a certain day on a given window, 
+is omitted from the analysis (complete case analysis).
 
 In other words, this plot is a _combination of the plots_ created by the 
 [FILE: plot_single_mouse_per_day](plot_single_mouse_per_day.py) (see above) for all the mice. 
