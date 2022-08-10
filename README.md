@@ -87,7 +87,7 @@ The mean/median line on the graph is calculated using "sliding window" technic.
 Meaning that for a point (x, y) on the line - y is the mean glucose levels 
 measured from x to [x + window_size]. When "window_size" is a parameter given by
 the user (see arguments below). 
-Note that missing data on a given window, is omitted from the analysis (complete case analysis).
+Note that missing data from a certain day on a given window, is omitted from the analysis (complete case analysis).
 
 The graph also has "standard error bars", which show the 25 and 75 percentile calculated from the data.
 ```
@@ -117,7 +117,7 @@ It is calculated using "sliding window" technic.
 Meaning that for a point (x, y) on the line - y is the mean glucose levels 
 measured from x to [x + window_size]. When "window_size" is a parameter given by
 the user (see arguments below). 
-Note that missing data on a given window, is omitted from the analysis (complete case analysis).
+Note that missing data from a certain day on a given window, is omitted from the analysis (complete case analysis).
 
 In other words, this plot is a _combination of the plots_ created by the 
 [FILE: plot_single_mouse_per_day](plot_single_mouse_per_day.py) (see above) for all the mice. 
