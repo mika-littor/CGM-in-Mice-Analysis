@@ -29,7 +29,7 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 (provided by analysis of the plots created by the devices' program).
 However, by default the program of the device exports the data to a csv file using 
 5 minutes interval. If you decide to use the defaulted one, 
-it would not change the plots, but note that it will be less accurate.
+the data presented by the plots will be less accurate.
 
    The following format is best for creating "neat" plots 
 (you may change the month column to contain numbers if you wish to).
