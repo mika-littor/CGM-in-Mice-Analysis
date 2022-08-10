@@ -6,7 +6,9 @@ Doron Kleiman, Mika Littor, Mahmoud Nawas, Rachel Ben-Haroush Schyr, Danny Ben-Z
 Welcome to the homepage of the CGM (continuous glucose monitoring) analysis code!
 
 This folder contains 5 code files written in Python 3.
-The files produce plots out of data recorded from mice, using CGM.
+The files produce plots out of data recorded from mice, using CGM 
+(We used "Abbott FreeStyle Libre").
+
 
 You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
 
@@ -23,8 +25,16 @@ You can reach us at [Ben-Zvi Lab](https://www.benzvilab.com/).
    ```
 2. CSV file for every mouse with the data measured using the CGM.
 
-   The following format is best for creating neat plots 
-(you can change the month column to contain month numbers if you wish to).
+   The data we exported from "Abbott FreeStyle Libre" device has a 2 minutes interval
+(provided by analysis of the plots created by the devices' program).
+However, by default the program of the device exports the data to csv using 
+5 minutes interval. If you decide to use the defaulted one, 
+it would not change the plots, but note that it will be less accurate.
+
+   The following format is best for creating "neat" plots 
+(you may change the month column to contain numbers if you wish to).
+Convert the data you exported to match this format.
+
 
    | Day |  Month  | Time (HH:MM) | Value | 
    |:---:|:-------:|:------------:|:-----:|
@@ -56,7 +66,7 @@ It contains code that is necessary for creating any of the plots.
 ### [FILE: multiple_plots_raw](multiple_plots_raw.py)
 Creating a plot that shows the **"raw"** data recorded on a **single** mouse. 
 Each day that was recorded appears as a single colored line on the plot.
-The x-axis represent the time from 00:00 to 24:00, and the y-axis the glucose levels measured.
+The x-axis represents the time from 00:00 to 24:00, and the y-axis the glucose levels measured.
 
 ```
 Arguments:
@@ -68,7 +78,7 @@ Arguments:
 
 ### [FILE: plot_single_mouse_per_day](plot_single_mouse_per_day.py)
 Creating a plot that shows the glucose levels measured on a **single** mouse
-during the time of recording. The x-axis represent the time from 00:00 to 24:00, 
+during the time of recording. The x-axis represents the time from 00:00 to 24:00, 
 and the y-axis the glucose levels measured.
 
 The plot could either represent the **mean** or the **median** values of the data, 
@@ -96,7 +106,7 @@ inside the working directory
 
 ### [FILE: plot_all_mice_avg](plot_all_mice.py)
 Creating a plot that shows the glucose levels measured on **all** mice during
-the time of recording. The x-axis represent the time from 00:00 to 24:00, 
+the time of recording. The x-axis represents the time from 00:00 to 24:00, 
 and the y-axis the glucose levels measured. 
 
 The plot could either represent the **mean** or the **median** values of the data, 
