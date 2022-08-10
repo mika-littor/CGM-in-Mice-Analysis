@@ -88,8 +88,8 @@ and the y-axis the glucose levels measured.
 
 The plot could either represent the **mean** or the **median** values of the data, 
 according to the user's choice (see arguments below).
-The mean/median line on the graph is calculated using "sliding window" technic. 
-Meaning that for a point (x, y) on the line - y is the mean glucose levels 
+The mean/median line on the graph is calculated using a "sliding window" technique. 
+Meaning that for each point (x, y) on the line - y is the mean glucose levels 
 measured from x to [x + window_size]. When "window_size" is a parameter given by
 the user (see arguments below). 
 Note that missing data from a certain day on a given window, is omitted from the analysis (complete case analysis).
@@ -119,7 +119,7 @@ The plot could either represent the **mean** or the **median** values of the dat
 according to the user's choice (see arguments below).
 _Each line on the graph represents the mean/median values of a single mouse._
 It is calculated using "sliding window" technic. 
-Meaning that for a point (x, y) on the line - y is the mean glucose levels 
+Meaning that for each point (x, y) on the line - y is the mean glucose levels 
 measured from x to [x + window_size]. When "window_size" is a parameter given by
 the user (see arguments below). 
 Note that missing data from a certain day on a given window, 
