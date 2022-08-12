@@ -30,12 +30,6 @@ software program creates a graph from the collected data. The sensors program ca
 export the data points to csv file, but the file it exports has data points with 
 5 minute intervals excluding some of the data points.  
 
-   The data we exported from "Abbott FreeStyle Libre" device has a 2 minutes interval
-(provided by analysis of the plots created by the devices' program).
-However, by default the program of the device exports the data to a csv file using 
-5 minutes interval. If you decide to use the defaulted one, 
-the data presented by the plots will be less accurate.
-
    The following format is best for creating "neat" plots 
 (you may change the month column to contain numbers if you wish to).
 Convert the data you exported to match this format.
