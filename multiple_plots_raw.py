@@ -65,7 +65,7 @@ def create_plot(plt, mouse_name):
 
 def validation_of_args(args_lst):
     """
-    checks if the args are valid - meaning there are only two, and the second is a valid path.
+    checks if the args are valid - meaning there are only 2, and the second is a valid path.
     :param args_lst: list of arguments (not including the first argument as the path to this python file.
     """
     if len(args_lst) != ARGS_NUMBER:

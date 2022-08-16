@@ -59,7 +59,7 @@ def create_lst_per_day(type_plot, dict_data, window):
 
 def validation_of_args(args_lst):
     """
-    checks if the args are valid - meaning there are only two, and the second is a valid path.
+    checks if the args are valid - meaning there are only 5, and the second is a valid path.
     :param args_lst: list of arguments (not including the first argument as the path to this python file.
     """
     if len(args_lst) != ARGS_NUMBER:
