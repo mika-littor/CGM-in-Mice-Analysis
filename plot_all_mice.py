@@ -13,7 +13,7 @@
 ###########################################
 from supplementary_file import *
 
-NAME_MICE = ["Naw1_M3", "Naw1_M4", "Naw2_M6", "Naw2_M8", "Naw2_M10", "Naw2_M11", "Naw3_M2",  "Naw3_M3"]
+NAME_MICE = ["Mouse_A", "Mouse_B", "Mouse_C"]
 
 # define limit of the y axis
 Y_AXIS_MAX = 190
@@ -74,7 +74,7 @@ def create_plot(type_plot, plt, window_size, recording_space):
     plt.show()
 
 
-def clac_mean_or_median(type_plot, dict_data, window):
+def calc_mean_or_median(type_plot, dict_data, window):
     """
     :param window: times in datetime for a specific window
     :param dict_data:
@@ -142,7 +142,7 @@ def main():
     for mouse in sorted(NAME_MICE):
         path_file = path_to_mouse(mouse, args_lst[PATH_LOC_IN_ARGS])
         dict_data = create_dict_date_values(path_file)
-        slided_data_dict = slide_data(dict_data, clac_mean_or_median, window_size_ele,
+        slided_data_dict = slide_data(dict_data, calc_mean_or_median, window_size_ele,
                                       int(args_lst[RECORDING_SPACE_LOC_IN_ARGS]), type_plot)
         dict_mouse[mouse] = slided_data_dict
     multiple_plots(type_plot, dict_mouse, int(args_lst[WINDOW_SIZE_LOC_IN_ARGS]), int(args_lst[
