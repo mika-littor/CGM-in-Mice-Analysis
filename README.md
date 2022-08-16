@@ -58,11 +58,11 @@ according to the name of the mouse
 file according to the mice's names 
 
 ## Files
-### [supplementary_file](supplementary_file.py)
+### [supplementary_file.py](supplementary_file.py)
 Add the supplementary file to your working directory (see setup).
 It contains code that is necessary for creating any of the plots.
 
-### [multiple_plots_raw](multiple_plots_raw.py)
+### [multiple_plots_raw.py](multiple_plots_raw.py)
 Creating a plot that shows the **"raw"** data recorded on a **single** mouse. 
 Each day that was recorded appears as a single colored line on the plot.
 The x-axis represents the time from 00:00 to 24:00, and the y-axis the glucose levels measured.
@@ -75,7 +75,7 @@ Arguments:
 #### Example (our data recordings were from 00:00 to 18:00):
 ![raw_image](Images/raw%20data%20single%20mouse.png)
 
-### [plot_single_mouse_per_day](plot_single_mouse_per_day.py)
+### [plot_single_mouse_per_day.py](plot_single_mouse_per_day.py)
 Creating a plot that shows the glucose levels measured on a **single** mouse
 during the time of recording. The x-axis represents the time from 00:00 to 24:00, 
 and the y-axis the glucose levels measured.
@@ -104,7 +104,7 @@ inside the working directory
 ![raw_image](Images/plot%20single%20mouse%20median.png)
 
 
-### [plot_all_mice_avg](plot_all_mice.py)
+### [plot_all_mice_avg.py](plot_all_mice.py)
 Creating a plot that shows the glucose levels measured on **all** mice during
 the time of recording. The x-axis represents the time from 00:00 to 24:00, 
 and the y-axis the glucose levels measured. 
@@ -120,7 +120,7 @@ Note that missing data from a certain day on a given window,
 is omitted from the analysis (complete case analysis).
 
 In other words, this plot is a _combination of the plots_ created by the 
-[plot_single_mouse_per_day](plot_single_mouse_per_day.py) (see above) for all the mice. 
+[plot_single_mouse_per_day.py](plot_single_mouse_per_day.py) (see above) for all the mice. 
 
 
 ```
