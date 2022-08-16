@@ -10,7 +10,6 @@ import numpy as np
 import os.path
 import statistics
 
-# The representation of the columns in the csv file
 from scipy.signal import savgol_filter
 
 COL_DAY = 0
